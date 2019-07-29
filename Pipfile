@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+setuptools = "*"
+pexpect = "*"
+paramiko = "*"
+
+[dev-packages]
+pytest = "*"
+apache-airflow = "*"
+pylint = "*"
+
+[requires]
+python_version = "3.6"
