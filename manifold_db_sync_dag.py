@@ -56,8 +56,8 @@ def slackpostonsuccess(dag, **context):
 
 
 
-dump_prod_db_bash = "sudo su - postgres bash -c \
-\"pg_dump --format=c --file=`/tmp/{}\" \
+dump_prod_db_bash = "sudo su - pos bash -c \
+\"pg_dump -U dump --format=c --file=`/tmp/{}\" \
 manifold".format(MANIFOLD_DB_DUMP_FILENAME)
 
 
@@ -103,10 +103,34 @@ put_prod_dump_on_qa = SFTPOperator(
 
 
 restore_prod_dump = "sudo su - postgres bash -c \
-\"pg_restore --format=c --file=`/tmp/{}\" \
+\"pg_restore -U restore --format=c --file=`/tmp/{}\" \
 manifold".format(MANIFOLD_DB_DUMP_FILENAME)
 
 
+
+ manifold_prod_s3_file_list = S3ListOperator(
+    task_id='list_prod_s3_files',
+    bucket='tulib-manifold-prod',
+    prefix='',
+    delimiter='/',
+    aws_conn_id='manifold_prod_s3_conn'
+)
+
+ manifold_stage_s3_file_list = S3ListOperator(
+    task_id='list_stage_s3_files',
+    bucket='tulib-manifold-stage',
+    prefix='',
+    delimiter='/',
+    aws_conn_id='manifold_stage_s3_conn'
+)
+
+ manifold_qa_s3_file_list = S3ListOperator(
+    task_id='list_qa_s3_files',
+    bucket='tulib-manifold-qa',
+    prefix='',
+    delimiter='/',
+    aws_conn_id='manifold_qa_s3_conn'
+)
 
 
 post_slack = PythonOperator(
