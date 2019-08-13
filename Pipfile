@@ -5,7 +5,6 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-pexpect = "*"
 paramiko = "*"
 
 [dev-packages]
