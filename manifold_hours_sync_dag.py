@@ -5,7 +5,7 @@ from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
 from cob_datapipeline.task_slackpost import task_generic_slackpostsuccess, task_slackpostonfail
 
-MANIFOLD_INSTANCE_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
+MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_HOURS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL")
 #
 # CREATE DAG
@@ -56,7 +56,7 @@ sync_hours = SSHOperator(
         task_id='sync_hours',
         command=sync_hours_bash,
         dag=MANIFOLD_HOURS_SYNC_DAG,
-        ssh_conn_id='AIRFLOW_CONN_MANIFOLD_INSTANCE'
+        ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
     )
 
 post_slack = PythonOperator(
