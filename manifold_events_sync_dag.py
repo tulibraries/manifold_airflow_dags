@@ -35,7 +35,7 @@ MANIFOLD_EVENTS_SYNC_DAG = airflow.DAG(
 
 
 def slackpostonsuccess(dag, **context):
-    """Task Method to Post Successful TUL Cob Index DAG Completion on Slack."""
+    """Task Method to Post Successful Manifold Events Sync DAG Completion on Slack."""
 
     ti = context.get('task_instance')
     logurl = ti.log_url

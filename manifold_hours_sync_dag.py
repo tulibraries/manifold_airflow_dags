@@ -1,4 +1,4 @@
-"""Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
+"""Airflow DAG to Run the Hours Sync rake task on a Manifold instance"""
 from datetime import datetime, timedelta
 import airflow
 from airflow.contrib.operators import SSHOperator
@@ -35,7 +35,7 @@ MANIFOLD_HOURS_SYNC_DAG = airflow.DAG(
 
 
 def slackpostonsuccess(dag, **context):
-    """Task Method to Post Successful TUL Cob Index DAG Completion on Slack."""
+    """Task Method to Post Successful Manifold Hours Sync Completion on Slack."""
 
     ti = context.get('task_instance')
     logurl = ti.log_url
