@@ -23,10 +23,10 @@ def pytest_sessionstart():
     airflow.models.Variable.set("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL", "@weekly")
     airflow.models.Variable.set("MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL", "@weekly")
     airflow.models.Variable.set("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL", "@weekly")
-  
+
 
     manifold = airflow.models.Connection(
-                conn_id="AIRFLOW_CONN_MANIFOLD_INSTANCE",
+                conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
                 conn_type="SSH",
                 )
     slack = airflow.models.Connection(
