@@ -1,8 +1,8 @@
 """Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
 from datetime import datetime, timedelta
 import airflow
-from airflow.contrib.operators import SSHOperator
-from airflow.operators import PythonOperator
+from airflow.contrib.operators.ssh_operator import SSHOperator
+from airflow.operators.python_operator import PythonOperator
 from cob_datapipeline.task_slackpost import task_generic_slackpostsuccess, task_slackpostonfail
 
 MANIFOLD_INSTANCE_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_INSTANCE")
