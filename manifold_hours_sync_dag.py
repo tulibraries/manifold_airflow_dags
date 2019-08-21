@@ -16,7 +16,7 @@ DEFAULT_ARGS = {
     'email': ['chad.nelson@temple.edu'],
     'email_on_failure': False,
     'email_on_retry': False,
-    'on_failure_callback': tasks.slackpostonfail(context).execute(context=context),
+    'on_failure_callback': tasks.execute_slackpostonfail,
     'retries': 0,
     'retry_delay': timedelta(minutes=5),
 }
