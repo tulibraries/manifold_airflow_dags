@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import airflow
 from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
-from cob_datapipeline.task_slackpost import task_generic_slackpostsuccess, task_slackpostonfail
+from tulflow import tasks
 
 MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_HOURS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL")
@@ -16,7 +16,7 @@ DEFAULT_ARGS = {
     'email': ['chad.nelson@temple.edu'],
     'email_on_failure': False,
     'email_on_retry': False,
-    'on_failure_callback': task_slackpostonfail,
+    'on_failure_callback': tasks.execute_slackpostonfail,
     'retries': 0,
     'retry_delay': timedelta(minutes=5),
 }
@@ -44,7 +44,7 @@ def slackpostonsuccess(dag, **context):
 
     message = "{} DAG {} success: Sync'd all the hours {}".format(date, dagid, logurl)
 
-    return task_generic_slackpostsuccess(dag, message).execute(context=context)
+    return tasks.slackpostonsuccess(dag, message).execute(context=context)
 
 sync_hours_bash = """
 sudo su - manifold bash -c \
