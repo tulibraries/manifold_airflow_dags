@@ -34,18 +34,6 @@ MANIFOLD_EVENTS_SYNC_DAG = airflow.DAG(
 #
 
 
-def slackpostonsuccess(dag, **context):
-    """Task Method to Post Successful Manifold Events Sync DAG Completion on Slack."""
-
-    ti = context.get('task_instance')
-    logurl = ti.log_url
-    dagid = ti.dag_id
-    date = context.get('execution_date')
-
-    message = "{} DAG {} success: Sync'd all the events {}".format(date, dagid, logurl)
-
-    return tasks.slackpostonsuccess(dag, message).execute(context=context)
-
 sync_events_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
@@ -61,7 +49,7 @@ sync_events = SSHOperator(
 
 post_slack = PythonOperator(
     task_id='slack_post_succ',
-    python_callable=slackpostonsuccess,
+    python_callable=tasks.slackpostonsuccess,
     provide_context=True,
     dag=MANIFOLD_EVENTS_SYNC_DAG
 )
