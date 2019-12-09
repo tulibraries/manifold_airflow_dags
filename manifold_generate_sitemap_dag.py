@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import airflow
 from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
-from tulflow import tasks
+from manifold_airflow_dags.task_slack_posts import slackpostonfail, slackpostonsuccess
 
 MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_GENERATE_SITEMAP_INTERVAL = airflow.models.Variable.get("MANIFOLD_GENERATE_SITEMAP_SCHEDULE_INTERVAL", default_var="@weekly")
@@ -16,7 +16,7 @@ DEFAULT_ARGS = {
     'email': ['chad.nelson@temple.edu'],
     'email_on_failure': False,
     'email_on_retry': False,
-    'on_failure_callback': tasks.execute_slackpostonfail,
+    'on_failure_callback': slackpostonfail,
     'retries': 0,
     'retry_delay': timedelta(minutes=5),
 }
@@ -33,19 +33,6 @@ MANIFOLD_GENERATE_SITEMAP_DAG = airflow.DAG(
 # Tasks with custom logic are relegated to individual Python files.
 #
 
-
-def slackpostonsuccess(dag, **context):
-    """Task Method to Post Successful Generate Sitemap DAG Completion on Slack."""
-
-    ti = context.get('task_instance')
-    logurl = ti.log_url
-    dagid = ti.dag_id
-    date = context.get('execution_date')
-
-    message = "{} DAG {} success: Sitemap successfully generated {}".format(date, dagid, logurl)
-
-    return tasks.slackpostonsuccess(dag, message).execute(context=context)
-
 generate_sitemap_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
@@ -53,11 +40,11 @@ sudo su - manifold bash -c \
 """
 
 generate_sitemap = SSHOperator(
-        task_id='generate_sitemap',
-        command=generate_sitemap_bash,
-        dag=MANIFOLD_GENERATE_SITEMAP_DAG,
-        ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
-    )
+    task_id='generate_sitemap',
+    command=generate_sitemap_bash,
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
+    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
+)
 
 post_slack = PythonOperator(
     task_id='slack_post_succ',
