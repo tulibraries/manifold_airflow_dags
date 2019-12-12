@@ -1,0 +1,8 @@
+{
+    "AIRFLOW_HOME": "/usr/local/airflow",
+    "AIRFLOW_USER_HOME": "/usr/local/airflow",
+    "MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL": "@daily",
+    "MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL": "@daily",
+    "MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL": "@daily",
+    "MANIFOLD_GENERATE_SITEMAP_SCHEDULE_INTERVAL": "@daily"
+}

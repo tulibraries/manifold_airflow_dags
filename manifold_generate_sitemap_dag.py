@@ -11,11 +11,8 @@ MANIFOLD_GENERATE_SITEMAP_INTERVAL = airflow.models.Variable.get("MANIFOLD_GENER
 # CREATE DAG
 #
 DEFAULT_ARGS = {
-    'owner': 'airflow',
+    'owner': 'manifold',
     'start_date': datetime(2019, 5, 28),
-    'email': ['chad.nelson@temple.edu'],
-    'email_on_failure': False,
-    'email_on_retry': False,
     'on_failure_callback': slackpostonfail,
     'retries': 0,
     'retry_delay': timedelta(minutes=5),
