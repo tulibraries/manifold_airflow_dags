@@ -22,8 +22,11 @@ DEFAULT_ARGS = {
 }
 
 MANIFOLD_EVENTS_SYNC_DAG = airflow.DAG(
-    'manifold_events_sync', default_args=DEFAULT_ARGS, catchup=False,
-    max_active_runs=1, schedule_interval=MANIFOLD_EVENTS_SYNC_INTERVAL
+    'manifold_events_sync',
+    catchup=False,
+    default_args=DEFAULT_ARGS,
+    max_active_runs=1,
+    schedule_interval=MANIFOLD_EVENTS_SYNC_INTERVAL
 )
 
 #

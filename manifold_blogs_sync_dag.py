@@ -22,8 +22,11 @@ DEFAULT_ARGS = {
 }
 
 MANIFOLD_BLOGS_SYNC_DAG = airflow.DAG(
-    'manifold_blogs_sync', default_args=DEFAULT_ARGS, catchup=False,
-    max_active_runs=1, schedule_interval=MANIFOLD_BLOGS_SYNC_INTERVAL
+    'manifold_blogs_sync',
+    catchup=False,
+    default_args=DEFAULT_ARGS,
+    max_active_runs=1,
+    schedule_interval=MANIFOLD_BLOGS_SYNC_INTERVAL
 )
 
 #
