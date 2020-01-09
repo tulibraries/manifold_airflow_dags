@@ -22,6 +22,7 @@ def pytest_sessionstart():
     airflow.models.Variable.set("AIRFLOW_LOG_DIR", repo_dir + '/logs')
     airflow.models.Variable.set("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL", "@weekly")
     airflow.models.Variable.set("MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL", "@weekly")
+    airflow.models.Variable.set("MANIFOLD_DUMP_DATABASE_SCHEDULE_INTERVAL", "@weekly")
     airflow.models.Variable.set("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL", "@weekly")
 
 
