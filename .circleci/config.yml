@@ -94,7 +94,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - qa
       - stage_deploy:
           requires:
             - lint_and_test
