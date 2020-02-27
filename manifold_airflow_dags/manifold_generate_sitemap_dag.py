@@ -36,27 +36,56 @@ MANIFOLD_GENERATE_SITEMAP_DAG = airflow.DAG(
 # Tasks with custom logic are relegated to individual Python files.
 #
 
+the_date_bash = """
+sudo su - manifold bash -c \
+ echo $(date)
+"""
+
 generate_sitemap_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
  RAILS_ENV=production bundle exec rake sitemap:create"
 """
 
-generate_sitemap = SSHOperator(
-    task_id='generate_sitemap',
-    command=generate_sitemap_bash,
+start_date = SSHOperator(
+    task_id='start_date',
+    command=the_date_bash,
     dag=MANIFOLD_GENERATE_SITEMAP_DAG,
     ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
 )
 
-post_slack = PythonOperator(
-    task_id='slack_post_succ',
-    python_callable=slackpostonsuccess,
-    provide_context=True,
-    dag=MANIFOLD_GENERATE_SITEMAP_DAG
+end_date = SSHOperator(
+    task_id='end_date',
+    command=the_date_bash,
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
+    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
 )
+
+generate_sitemap_1 = SSHOperator(
+    task_id='generate_sitemap_1',
+    command=generate_sitemap_bash,
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
+    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_1_SSH_INSTANCE'
+)
+
+generate_sitemap_2 = SSHOperator(
+    task_id='generate_sitemap_2',
+    command=generate_sitemap_bash,
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
+    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_2_SSH_INSTANCE'
+)
+
+#post_slack = PythonOperator(
+#    task_id='slack_post_succ',
+#    python_callable=slackpostonsuccess,
+#    provide_context=True,
+#    dag=MANIFOLD_GENERATE_SITEMAP_DAG
+#)
 
 #
 # SET UP TASK DEPENDENCIES
 #
-post_slack.set_upstream(generate_sitemap)
+generate_sitemap_1.set_upstream(start_date)
+generate_sitemap_2.set_upstream(start_date)
+end_date.set_upstream([generate_sitemap_1, generate_sitemap_2])
+#post_slack.set_upstream(generate_sitemap_1)
