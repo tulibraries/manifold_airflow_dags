@@ -5,8 +5,8 @@ from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.task_slack_posts import slackpostonfail, slackpostonsuccess
 
-MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_GENERATE_SITEMAP_INTERVAL = airflow.models.Variable.get("MANIFOLD_GENERATE_SITEMAP_SCHEDULE_INTERVAL", default_var="@weekly")
+
 #
 # CREATE DAG
 #
@@ -61,19 +61,18 @@ end_date = SSHOperator(
     ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
 )
 
-generate_sitemap_1 = SSHOperator(
-    task_id='generate_sitemap_1',
-    command=generate_sitemap_bash,
-    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
-    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_1_SSH_INSTANCE'
-)
+AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST = [
+       'AIRFLOW_CONN_MANIFOLD_1_SSH_INSTANCE',
+       'AIRFLOW_CONN_MANIFOLD_2_SSH_INSTANCE'
+       ]
 
-generate_sitemap_2 = SSHOperator(
-    task_id='generate_sitemap_2',
-    command=generate_sitemap_bash,
-    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
-    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_2_SSH_INSTANCE'
-)
+sitemap_generator_tasks = []
+for index, instance in enumerate(AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST):
+    sitemap_generator_tasks.append(SSHOperator(
+        task_id = 'generate_sitemap_%d' % (index+1),
+        command = generate_sitemap_bash,
+        dag = MANIFOLD_GENERATE_SITEMAP_DAG,
+        ssh_conn_id = 'AIRFLOW_CONN_MANIFOLD_%d_SSH_INSTANCE' % (index+1)))
 
 #post_slack = PythonOperator(
 #    task_id='slack_post_succ',
@@ -85,7 +84,8 @@ generate_sitemap_2 = SSHOperator(
 #
 # SET UP TASK DEPENDENCIES
 #
-generate_sitemap_1.set_upstream(start_date)
-generate_sitemap_2.set_upstream(start_date)
-end_date.set_upstream([generate_sitemap_1, generate_sitemap_2])
+for task in sitemap_generator_tasks:
+    task.set_upstream(start_date)
+    end_date.set_upstream(task)
+
 #post_slack.set_upstream(generate_sitemap_1)
