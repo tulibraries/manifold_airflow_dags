@@ -5,6 +5,14 @@ from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.task_slack_posts import slackpostonfail, slackpostonsuccess
 
+
+AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST = [
+       'AIRFLOW_CONN_MANIFOLD_1_SSH_INSTANCE',
+       'AIRFLOW_CONN_MANIFOLD_2_SSH_INSTANCE',
+       'AIRFLOW_CONN_MANIFOLD_3_SSH_INSTANCE',
+       'AIRFLOW_CONN_MANIFOLD_4_SSH_INSTANCE'
+       ]
+
 MANIFOLD_GENERATE_SITEMAP_INTERVAL = airflow.models.Variable.get("MANIFOLD_GENERATE_SITEMAP_SCHEDULE_INTERVAL", default_var="@weekly")
 
 #
@@ -47,6 +55,7 @@ sudo su - manifold bash -c \
  RAILS_ENV=production bundle exec rake sitemap:create"
 """
 
+# Starting node task
 start_date = SSHOperator(
     task_id='start_date',
     command=the_date_bash,
@@ -54,17 +63,13 @@ start_date = SSHOperator(
     ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
 )
 
-end_date = SSHOperator(
-    task_id='end_date',
-    command=the_date_bash,
-    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
-    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
-)
-
-AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST = [
-       'AIRFLOW_CONN_MANIFOLD_1_SSH_INSTANCE',
-       'AIRFLOW_CONN_MANIFOLD_2_SSH_INSTANCE'
-       ]
+# Ending node task
+#end_date = SSHOperator(
+#    task_id='end_date',
+#    command=the_date_bash,
+#    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
+#    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
+#)
 
 sitemap_generator_tasks = []
 for index, instance in enumerate(AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST):
@@ -74,18 +79,17 @@ for index, instance in enumerate(AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE_LIST):
         dag = MANIFOLD_GENERATE_SITEMAP_DAG,
         ssh_conn_id = 'AIRFLOW_CONN_MANIFOLD_%d_SSH_INSTANCE' % (index+1)))
 
-#post_slack = PythonOperator(
-#    task_id='slack_post_succ',
-#    python_callable=slackpostonsuccess,
-#    provide_context=True,
-#    dag=MANIFOLD_GENERATE_SITEMAP_DAG
-#)
+post_slack = PythonOperator(
+    task_id='slack_post_succ',
+    python_callable=slackpostonsuccess,
+    provide_context=True,
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG
+)
 
 #
 # SET UP TASK DEPENDENCIES
 #
 for task in sitemap_generator_tasks:
     task.set_upstream(start_date)
-    end_date.set_upstream(task)
+    post_slack.set_upstream(task)
 
-#post_slack.set_upstream(generate_sitemap_1)
