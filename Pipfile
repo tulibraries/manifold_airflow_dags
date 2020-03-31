@@ -5,7 +5,7 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-tulflow = "*"
+tulflow = "==0.5.3"
 lxml = "==4.4.3"
 
 [dev-packages]
