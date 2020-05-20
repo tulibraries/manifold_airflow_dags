@@ -5,9 +5,9 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-tulflow = "==0.5.3"
 
 [dev-packages]
+tulflow = "==0.5.3"
 pytest = "*"
 apache-airflow = "*"
 pylint = "*"
