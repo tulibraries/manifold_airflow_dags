@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2fff7ff6dea9f9abee685f911808c428f8ff848a4dbf8ba3d2a48c069c5a30a8"
+            "sha256": "94cd29861ff219405e1f88fe3174e9e6c365c16267def97d74d4be2e5e2b911d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -51,10 +51,10 @@
         },
         "tulflow": {
             "hashes": [
-                "sha256:42a3e54b68f26097d52f7772f3faffd87bde26b54d46d897a918da5c28deece4"
+                "sha256:111cf6a4f895a8ec5892f71d727c6533222f152afe9955909fa395c667fe9305"
             ],
             "index": "pypi",
-            "version": "==0.5.3"
+            "version": "==0.6.1"
         }
     },
     "develop": {
@@ -389,7 +389,7 @@
                 "sha256:90bb658cdbbf6d1735b6341ce708fc7024a3e14e99ffdc5783edea9f9b077f83",
                 "sha256:dc15b2969b4ce36305c51eebe62d418ac7791e9a157911d58bfb1f9ccd8e2070"
             ],
-            "markers": "python_version == '3.6'",
+            "markers": "python_version < '3.8'",
             "version": "==1.7.0"
         },
         "iniconfig": {
