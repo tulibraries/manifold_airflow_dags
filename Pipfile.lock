@@ -33,10 +33,11 @@
         },
         "apache-airflow": {
             "hashes": [
-                "sha256:ef54ea91b5a1c1c79e26212779fa6bb855988e252185797066d30453a9b76c41"
+                "sha256:046e16266e30a78c848f0fd53a910203bf141d9357e3179854a75909a1824a66",
+                "sha256:95ba96ef7e7a5547105b5a256ed4bf51cea0901daf3ec19235bd28eb2bec5bb1"
             ],
             "index": "pypi",
-            "version": "==1.10.9"
+            "version": "==1.10.10"
         },
         "apispec": {
             "extras": [
@@ -336,9 +337,9 @@
         },
         "future": {
             "hashes": [
-                "sha256:e39ced1ab767b5936646cedba8bcce582398233d6a627067d4c6a454c90cfedb"
+                "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
             ],
-            "version": "==0.16.0"
+            "version": "==0.18.2"
         },
         "graphviz": {
             "hashes": [
