@@ -39,20 +39,20 @@ ENABLE_DELETE = True
 # logs cleared.
 NUMBER_OF_WORKERS = 1
 DIRECTORIES_TO_DELETE = [
-    BASE_LOG_FOLDER + "/alma_electronic_notes",
-    BASE_LOG_FOLDER + "/catalog_full_reindex",
-    BASE_LOG_FOLDER + "/catalog_move_alma_sftp_to_s3",
-    BASE_LOG_FOLDER + "/catalog_pre_production_oai_harvest",
-    BASE_LOG_FOLDER + "/catalog_production_oai_harvest",
-    BASE_LOG_FOLDER + "/qa_sc_az_reindex",
-    BASE_LOG_FOLDER + "/prod_sc_az_reindex",
-    BASE_LOG_FOLDER + "/qa_sc_web_content_reindex",
-    BASE_LOG_FOLDER + "/prod_sc_web_content_reindex",
+    "alma_electronic_notes",
+    "catalog_full_reindex",
+    "catalog_move_alma_sftp_to_s3",
+    "catalog_pre_production_oai_harvest",
+    "catalog_production_oai_harvest",
+    "qa_sc_az_reindex",
+    "prod_sc_az_reindex",
+    "qa_sc_web_content_reindex",
+    "prod_sc_web_content_reindex",
 ]
 ENABLE_DELETE_CHILD_LOG = Variable.get(
     "airflow_log_cleanup__enable_delete_child_log", "False"
 )
-LOG_CLEANUP_PROCESS_LOCK_FILE = "/tmp/airflow_log_cleanup_worker.lock"
+LOG_CLEANUP_PROCESS_LOCK_FILE = "/tmp/airflow_log_cleanup_worker_" + "{{params.directory}}" + ".lock"
 logging.info("ENABLE_DELETE_CHILD_LOG  " + ENABLE_DELETE_CHILD_LOG)
 
 if not BASE_LOG_FOLDER or BASE_LOG_FOLDER.strip() == "":
@@ -105,7 +105,7 @@ start = DummyOperator(
 log_cleanup = """
 
 echo "Getting Configurations..."
-BASE_LOG_FOLDER="{{params.directory}}"
+BASE_LOG_FOLDER="/usr/local/airflow/logs/{{params.directory}}"
 WORKER_SLEEP_TIME="{{params.sleep_time}}"
 
 sleep ${WORKER_SLEEP_TIME}s
