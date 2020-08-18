@@ -1,12 +1,9 @@
 """Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
 from datetime import datetime, timedelta
 import airflow
-from airflow.operators.bash_operator import BashOperator
 from airflow.hooks.base_hook import BaseHook
-from airflow.hooks.S3_hook import S3Hook
 from airflow.models import Variable
 from airflow.contrib.operators.ssh_operator import SSHOperator
-from airflow.contrib.operators.sftp_operator import SFTPOperator
 from airflow.contrib.operators.sftp_to_s3_operator import SFTPToS3Operator
 from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.task_slack_posts import slackpostonfail
