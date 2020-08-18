@@ -5,7 +5,6 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-tulflow = "==0.6.3"
 lxml = "==4.4.3"
 
 [dev-packages]
@@ -14,6 +13,7 @@ apache-airflow = "*"
 pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
+tulflow = "==0.6.3"
 
 [requires]
 python_version = "3.6"
