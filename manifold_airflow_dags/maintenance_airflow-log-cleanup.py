@@ -39,15 +39,16 @@ ENABLE_DELETE = True
 # logs cleared.
 NUMBER_OF_WORKERS = 1
 DIRECTORIES_TO_DELETE = [
-    "alma_electronic_notes",
-    "catalog_full_reindex",
-    "catalog_move_alma_sftp_to_s3",
-    "catalog_pre_production_oai_harvest",
-    "catalog_production_oai_harvest",
-    "qa_sc_az_reindex",
-    "prod_sc_az_reindex",
-    "qa_sc_web_content_reindex",
-    "prod_sc_web_content_reindex",
+    "manifold_hours_sync"
+    # "alma_electronic_notes",
+    # "catalog_full_reindex",
+    # "catalog_move_alma_sftp_to_s3",
+    # "catalog_pre_production_oai_harvest",
+    # "catalog_production_oai_harvest",
+    # "qa_sc_az_reindex",
+    # "prod_sc_az_reindex",
+    # "qa_sc_web_content_reindex",
+    # "prod_sc_web_content_reindex",
 ]
 ENABLE_DELETE_CHILD_LOG = Variable.get(
     "airflow_log_cleanup__enable_delete_child_log", "False"
@@ -105,7 +106,7 @@ start = DummyOperator(
 log_cleanup = """
 
 echo "Getting Configurations..."
-BASE_LOG_FOLDER="/usr/local/airflow/logs/{{params.directory}}"
+BASE_LOG_FOLDER="{{params.base_log_folder}}/{{params.directory}}"
 WORKER_SLEEP_TIME="{{params.sleep_time}}"
 
 sleep ${WORKER_SLEEP_TIME}s
@@ -228,7 +229,9 @@ for log_cleanup_id in range(1, NUMBER_OF_WORKERS + 1):
             bash_command=log_cleanup,
             params={
                 "directory": str(directory),
-                "sleep_time": int(log_cleanup_id)*3},
+                "sleep_time": int(log_cleanup_id)*3,
+                "base_log_folder": str(BASE_LOG_FOLDER),
+                },
             dag=dag)
 
         log_cleanup_op.set_upstream(start)
