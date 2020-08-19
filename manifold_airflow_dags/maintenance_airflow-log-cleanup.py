@@ -39,16 +39,15 @@ ENABLE_DELETE = True
 # logs cleared.
 NUMBER_OF_WORKERS = 1
 DIRECTORIES_TO_DELETE = [
-    "manifold_hours_sync"
-    # "alma_electronic_notes",
-    # "catalog_full_reindex",
-    # "catalog_move_alma_sftp_to_s3",
-    # "catalog_pre_production_oai_harvest",
-    # "catalog_production_oai_harvest",
-    # "qa_sc_az_reindex",
-    # "prod_sc_az_reindex",
-    # "qa_sc_web_content_reindex",
-    # "prod_sc_web_content_reindex",
+    "alma_electronic_notes",
+    "catalog_full_reindex",
+    "catalog_move_alma_sftp_to_s3",
+    "catalog_pre_production_oai_harvest",
+    "catalog_production_oai_harvest",
+    "qa_sc_az_reindex",
+    "prod_sc_az_reindex",
+    "qa_sc_web_content_reindex",
+    "prod_sc_web_content_reindex",
 ]
 ENABLE_DELETE_CHILD_LOG = Variable.get(
     "airflow_log_cleanup__enable_delete_child_log", "False"
