@@ -5,6 +5,6 @@
   "TUPRESS_HARVEST_SCHEDULE_INTERVAL": "@daily",
   "TUPRESS_SFTP_URL": "sftp.tul-infra.page",
   "TUPRESS_WEB_URL": "173.255.195.105",
-  "TUPRESS_SFTP_PATH": ".",
+  "TUPRESS_SFTP_PATH": "/incoming",
   "TUPRESS_WEB_PATH": "."
 }
