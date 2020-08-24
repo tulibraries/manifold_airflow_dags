@@ -72,19 +72,21 @@ workflows:
           filters:
             branches:
               only:
-                - qa
+                - main
       - request-prod-deploy:
           type: approval
           requires:
             - lint_and_test
           filters:
             branches:
-              only:
-                - main
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
       - prod_deploy:
           requires:
             - request-prod-deploy
           filters:
             branches:
-              only:
-                - main
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
