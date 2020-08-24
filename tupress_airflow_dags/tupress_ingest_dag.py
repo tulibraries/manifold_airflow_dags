@@ -9,10 +9,6 @@ from airflow.models import Variable
 from airflow.contrib.operators.sftp_operator import SFTPOperator
 from airflow.operators.python_operator import PythonOperator
 
-TUPSFTP_INSTANCE_SSH_CONN = \
-        BaseHook.get_connection("AIRFLOW_CONN_TUPSFTP")
-TUPRESS_INSTANCE_SSH_CONN = \
-        BaseHook.get_connection("AIRFLOW_CONN_TUPRESS")
 TUPRESS_HARVEST_SCHEDULE_INTERVAL = \
         Variable.get("TUPRESS_HARVEST_SCHEDULE_INTERVAL")
 TUPRESS_SFTP_PATH = \
