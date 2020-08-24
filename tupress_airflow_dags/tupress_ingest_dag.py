@@ -1,4 +1,4 @@
-"""Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
+"""Airflow DAG to Run the Blogs Sync rake task on a TUPress instance"""
 from datetime import datetime, timedelta
 import airflow
 import re
