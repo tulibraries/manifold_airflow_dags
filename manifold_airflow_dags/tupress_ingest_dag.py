@@ -35,7 +35,7 @@ DAG = airflow.DAG(
 )
 
 def calculate_file_to_move(**context):
-    sftp_conn = SFTPHook(ftp_conn_id="AIRFLOW_CONN_TUPSFTP")
+    sftp_conn = SFTPHook(ftp_conn_id="tupsftp")
     files_list = sftp_conn.list_directory("./")
     just_dated_files = [f for f in files_list if re.match(r'\d+-\d+-\d+', f)]
     # Ignore a file that does not end with DELTA
