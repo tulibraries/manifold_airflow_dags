@@ -4,6 +4,7 @@ import airflow
 import re
 from airflow.operators.bash_operator import BashOperator
 from airflow.hooks.base_hook import BaseHook
+from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.contrib.hooks.sftp_hook import SFTPHook
 from airflow.models import Variable
 from airflow.contrib.operators.sftp_operator import SFTPOperator
@@ -15,6 +16,8 @@ TUPRESS_SFTP_PATH = \
         Variable.get("TUPRESS_SFTP_PATH")
 TUPRESS_WEB_PATH = \
         Variable.get("TUPRESS_WEB_PATH")
+TUPRESS_USER_NAME = \
+        Variable.get("TUP_ACCOUNT_NAME")
 
 DEFAULT_ARGS = {
     'owner': 'airflow',
@@ -84,6 +87,19 @@ SFTP_PUT_DELTA = SFTPOperator(
     dag=DAG
 )
 
+ingest_deltas_bash = """
+sudo su - { TUPRESS_USER_NAME } bash -c \
+ "cd /var/www/tupress &&\
+ RAILS_ENV=production bundle exec rake db:seed:run_updates[\"%s\"]"
+""" % f"{ TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer') }}"
+
+INGEST_DELTAS = SSHOperator(
+    task_id='sync_blogs',
+    command=ingest_deltas_bash,
+    dag=DAG,
+    ssh_conn_id='tupress'
+)
+
 #
 # Clean up cached file
 #
@@ -99,4 +115,6 @@ REMOVE_CACHED_DELTAS= BashOperator(
 #
 SFTP_GET_DELTA.set_upstream(GET_FILE_TO_TRANSFER)
 SFTP_PUT_DELTA.set_upstream(SFTP_GET_DELTA)
-REMOVE_CACHED_DELTAS.set_upstream(SFTP_PUT_DELTA)
+INGEST_DELTAS.set_upstream(SFTP_PUT_DELTA)
+REMOVE_CACHED_DELTAS.set_upstream(INGEST_DELTAS)
+
