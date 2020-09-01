@@ -87,10 +87,10 @@ SFTP_PUT_DELTA = SFTPOperator(
     dag=DAG
 )
 
-ingest_deltas_bash = """
+ingest_deltas_bash = f"""
 sudo su - { TUPRESS_USER_NAME } bash -c \
  "cd /var/www/tupress &&\
- RAILS_ENV=production bundle exec rake db:seed:run_updates[\"%s\"]"
+ RAILS_ENV=production bundle exec rake db:seed:run_updates['%s']"
 """ % f"{ TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer') }}"
 
 INGEST_DELTAS = SSHOperator(
