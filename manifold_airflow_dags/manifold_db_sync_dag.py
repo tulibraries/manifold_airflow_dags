@@ -87,29 +87,17 @@ POST_SLACK = PythonOperator(
 # 2. drop the db
 # 3. run pg_restore in a way that recreates the db and tables.
 # TODO - pg_restore returns some ignorable warnings that cause the command rc to be 2, which then fails in airflow
-drop_and_restore_db = f"""
-sudo su - postgres bash -c \
-  "psql manifold -c \"select pg_terminate_backend\(pid\) from pg_stat_activity where datname='manifold' AND application_name != 'psql';\" &&\
-  dropdb manifold &&\
-  pg_restore --username=restore --clean --create --dbname=manifold /tmp/%s"
-""" % "{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['filename'] }}"
-
 disconnect_sql = """
   sudo su - postgres bash -c 'echo "select pg_terminate_backend(pid) from pg_stat_activity where datname=\'manifold\' AND application_name!=\'psql\';" > disconnect_db.sql'
 """
 
-stop_connection = """
-  sudo su - postgres bash -c "psql manifold -f disconnect_db.sql"
-"""
-
-recreate_db = f"""
+drop_and_restore_db = f"""
 sudo su - postgres bash -c \
-  \"dropdb manifold && createdb manifold\"
-"""
-
-restore_db = f"""
-sudo su - postgres bash -c \
-  "pg_restore --dbname=manifold /tmp/%s"
+  "psql manifold -f disconnect_db.sql &&\
+  dropdb manifold &&\
+  createdb manifold &&\
+  pg_restore --dbname=manifold /tmp/%s &&\
+  rm disconnect_db.sql"
 """ % "{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['filename'] }}"
 
 run_db_migration = f"""
@@ -145,35 +133,16 @@ for server in ["VAGRANT"]:
         sftp_path="/tmp/" + "{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['filename'] }}",
         dag=DAG)
 
-    
-#    DROP_AND_RESTORE_DB = SSHOperator(
-#        task_id=f"drop_and_restore_{server}_db",
-#        ssh_conn_id=f"MANIFOLD_{server}_DB",
-#        command=drop_and_restore_db,
-#        dag=DAG)
-
     UPLOAD_DISCONNECT_COMMAND = SSHOperator(
         task_id=f"upload_{server}_db_disconnect_command",
         ssh_conn_id=f"MANIFOLD_{server}_DB",
         command=disconnect_sql,
         dag=DAG)
 
-    DROP_CONNECTION = SSHOperator(
-        task_id=f"drop_{server}_db_connection",
+    DROP_AND_RESTORE_DB = SSHOperator(
+        task_id=f"drop_and_restore_{server}_db",
         ssh_conn_id=f"MANIFOLD_{server}_DB",
-        command=stop_connection,
-        dag=DAG)
-
-    RECREATE_DB = SSHOperator(
-        task_id=f"drop_{server}_db",
-        ssh_conn_id=f"MANIFOLD_{server}_DB",
-        command=recreate_db,
-        dag=DAG)
-
-    RESTORE_DB = SSHOperator(
-        task_id=f"restore_{server}_db",
-        ssh_conn_id=f"MANIFOLD_{server}_DB",
-        command=restore_db,
+        command=drop_and_restore_db,
         dag=DAG)
 
     RUN_DB_MIGRATION = SSHOperator(
@@ -196,10 +165,8 @@ for server in ["VAGRANT"]:
 
     COPY_DB_DUMP_TO_SERVER.set_upstream(DETERMINE_S3_DB_DUMP_FILE)
     UPLOAD_DISCONNECT_COMMAND.set_upstream(COPY_DB_DUMP_TO_SERVER)
-    DROP_CONNECTION.set_upstream(UPLOAD_DISCONNECT_COMMAND)
-    RECREATE_DB.set_upstream(DROP_CONNECTION)
-    RESTORE_DB.set_upstream(RECREATE_DB)
-    RUN_DB_MIGRATION.set_upstream(RESTORE_DB)
+    DROP_AND_RESTORE_DB.set_upstream(UPLOAD_DISCONNECT_COMMAND)
+    RUN_DB_MIGRATION.set_upstream(DROP_AND_RESTORE_DB)
     RESTART_RAILS_APP.set_upstream(RUN_DB_MIGRATION)
     CLEANUP_FILES.set_upstream(RESTART_RAILS_APP)
     CLEANUP_FILES.set_downstream(POST_SLACK)
