@@ -76,28 +76,29 @@ POST_SLACK = PythonOperator(
     provide_context=True,
     dag=DAG)
 
-# We use the restore user for this because the restore user does not exist in the prod DB
-# This prevents us from accidentally running the restore on prod db.
-
-
-# We need to drop all connections to the manifold DB before we can drop the DB. But we don't want to drop the connection from the 
-# psql command doing the dropping or else the command fails.
-# So we
-# 1. drop connections to the db
-# 2. drop the db
-# 3. run pg_restore in a way that recreates the db and tables.
-# TODO - pg_restore returns some ignorable warnings that cause the command rc to be 2, which then fails in airflow
-disconnect_sql = """
-  sudo su - postgres bash -c 'echo "select pg_terminate_backend(pid) from pg_stat_activity where datname=\'manifold\' AND application_name!=\'psql\';" > disconnect_db.sql'
+# Create a temporary SQL script to Terminate connections to Manifold DB so we can drop the DB.
+disconnect_db_sql = """
+  sudo su - postgres bash -c 'echo "select pg_terminate_backend(pid) from pg_stat_activity where datname=\'manifold\' AND application_name!=\'psql\';" > /tmp/disconnect_db.sql'
 """
 
+# Restore the database:
+# 1. drop the db connection by calling the SQL script
+# 2. drop the db
+# 3. recreate the database
+# 4. run pg_restore in a way that recreates the db and tables.
+# 5. clean up the temporary disconnect_dbs SQL script
+#
+# [TODO] - pg_restore returns some ignorable warnings that cause the command rc to be 2, which
+# then fails in airflow.
+# We use the restore user for this because the restore user does not exist in the prod DB.
+# This prevents us from accidentally running the restore on prod db.
 drop_and_restore_db = f"""
 sudo su - postgres bash -c \
-  "psql manifold -f disconnect_db.sql &&\
+  "psql manifold -f \/tmp\/disconnect_db.sql &&\
   dropdb manifold &&\
   createdb manifold &&\
-  pg_restore --dbname=manifold /tmp/%s &&\
-  rm disconnect_db.sql"
+  pg_restore --username=restore --dbname=manifold /tmp/%s &&\
+  rm \/tmp\/disconnect_db.sql"
 """ % "{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['filename'] }}"
 
 run_db_migration = f"""
@@ -121,9 +122,10 @@ sudo su root - bash -c \
 ## you'll need to run this locally. When targetting manifold vagrant, they should use conan as user, 
 ## host of host.docker.internal, and the ports as defined in the manifold vagrant host file 
 ## https://github.com/tulibraries/ansible-playbook-manifold/blob/qa/inventory/vagrant/hosts
-##  
+## 
+## If running locally on a Vagrant Box, replace the list ["QA","STAGE"] with ["VAGRANT"]
 ##
-for server in ["VAGRANT"]:
+for server in ["QA","STAGE"]:
     COPY_DB_DUMP_TO_SERVER = S3ToSFTPOperator(
         task_id=f"copy_db_dump_to_{server}",
         s3_conn_id=AIRFLOW_S3_CONN_ID,
@@ -134,9 +136,9 @@ for server in ["VAGRANT"]:
         dag=DAG)
 
     UPLOAD_DISCONNECT_COMMAND = SSHOperator(
-        task_id=f"upload_{server}_db_disconnect_command",
+        task_id=f"upload_db_disconnect_to_{server}",
         ssh_conn_id=f"MANIFOLD_{server}_DB",
-        command=disconnect_sql,
+        command=disconnect_db_sql,
         dag=DAG)
 
     DROP_AND_RESTORE_DB = SSHOperator(
