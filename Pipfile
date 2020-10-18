@@ -5,7 +5,7 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-lxml = "==4.4.3"
+lxml = "==4.6.0"
 
 [dev-packages]
 pytest = "*"
