@@ -72,7 +72,7 @@ jobs:
 
 workflows:
   version: 2
-  dags_ci_cd:
+  qa_deploy:
     jobs:
       - lint_and_test
       - qa_deploy:
@@ -82,6 +82,14 @@ workflows:
             branches:
               only:
                 - main
+  prod_deploy:
+    jobs:
+      - lint_and_test:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
       - request-prod-deploy:
           type: approval
           requires:
