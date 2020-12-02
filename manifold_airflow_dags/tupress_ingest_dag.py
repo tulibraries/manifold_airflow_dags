@@ -94,7 +94,7 @@ sudo su - { TUPRESS_USER_NAME } bash -c \
 """ % f"{ TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer') }}"
 
 INGEST_DELTAS = SSHOperator(
-    task_id='sync_blogs',
+    task_id='ingest_deltas',
     command=ingest_deltas_bash,
     dag=DAG,
     ssh_conn_id='tupress'
@@ -105,10 +105,25 @@ INGEST_DELTAS = SSHOperator(
 #
 REMOVE_CACHED_DELTAS= BashOperator(
     task_id='remove_cached_deltas',
-    bash_command="rm /tmp/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}",
+    bash_command="rm { TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}",
     dag=DAG
 )
 
+#
+# Sync TUPress Blog
+#
+sync_blog = f"""
+sudo su - { TUPRESS_USER_NAME } bash -c \
+ "cd /var/www/tupress &&\
+ RAILS_ENV=production bundle exec rake sync:feeds
+"""
+
+SYNC_BLOG = SSHOperator(
+    task_id='sync_blog',
+    command=sync_blog,
+    dag=DAG,
+    ssh_conn_id='tupress'
+)
 
 #
 # SET UP TASK DEPENDENCIES
@@ -117,4 +132,5 @@ SFTP_GET_DELTA.set_upstream(GET_FILE_TO_TRANSFER)
 SFTP_PUT_DELTA.set_upstream(SFTP_GET_DELTA)
 INGEST_DELTAS.set_upstream(SFTP_PUT_DELTA)
 REMOVE_CACHED_DELTAS.set_upstream(INGEST_DELTAS)
+SYNC_BLOG.set_upstream(REMOVE_CACHED_DELTAS)
 
