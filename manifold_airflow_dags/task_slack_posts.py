@@ -16,7 +16,7 @@ def slackpostonsuccess(**context):
         dagid,
         logurl
     )
-    return tasks.execute_slackpostonsuccess(context, conn_id="AIRFLOW_CONN_SLACK_WEBHOOK", message=msg)
+    return tasks.execute_slackpostonsuccess(context, conn_id="MANIFOLD_SLACK_WEBHOOK", message=msg)
 
 def slackpostonfail(context):
     """Task Method to Post Failed Task on Lets Make a CMS Slack."""
