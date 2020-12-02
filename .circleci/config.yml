@@ -68,7 +68,7 @@ jobs:
             pipenv run ansible-galaxy install -r requirements.yml
             cp .circleci/.vault ~/.vault;
             chmod +x ~/.vault
-            pipenv run ansible-playbook -i inventory/prod/hosts playbook.yml --tags "jumphost,role::airflow::dags" --vault-password-file=~/.vault -e 'ansible_ssh_port=9229'
+            pipenv run ansible-playbook -i inventory/prod/hosts playbook.yml --tags "jumphost,role::airflow::dags" --vault-password-file=~/.vault -e 'ansible_ssh_port=9229' -e manifold_airflow_dags_branch=$CIRCLE_TAG
 
 workflows:
   version: 2
