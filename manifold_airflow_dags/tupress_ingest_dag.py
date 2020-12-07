@@ -99,6 +99,14 @@ INGEST_DELTAS = SSHOperator(
     dag=DAG,
     ssh_conn_id='tupress'
 )
+#
+# Clean up cached file
+#
+ECHO_REMOVE_CACHED_DELTAS= BashOperator(
+    task_id='echo_cached_deltas',
+    bash_command=f"echo{ TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}",
+    dag=DAG
+)
 
 #
 # Clean up cached file
@@ -131,6 +139,7 @@ SYNC_BLOG = SSHOperator(
 SFTP_GET_DELTA.set_upstream(GET_FILE_TO_TRANSFER)
 SFTP_PUT_DELTA.set_upstream(SFTP_GET_DELTA)
 INGEST_DELTAS.set_upstream(SFTP_PUT_DELTA)
+ECHO_REMOVE_CACHED_DELTAS.set_upstream(INGEST_DELTAS)
 REMOVE_CACHED_DELTAS.set_upstream(INGEST_DELTAS)
 SYNC_BLOG.set_upstream(REMOVE_CACHED_DELTAS)
 
