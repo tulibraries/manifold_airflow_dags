@@ -105,7 +105,7 @@ INGEST_DELTAS = SSHOperator(
 #
 REMOVE_CACHED_DELTAS= BashOperator(
     task_id='remove_cached_deltas',
-    bash_command="rm { TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}",
+    bash_command=f"rm { TUPRESS_WEB_PATH }/%s" % "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}",
     dag=DAG
 )
 
