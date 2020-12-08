@@ -115,7 +115,7 @@ REMOVE_CACHED_DELTAS = BashOperator(
 sync_blog = f"""
 sudo su - { TUPRESS_USER_NAME } bash -c \
  "cd /var/www/tupress &&\
- RAILS_ENV=production bundle exec rake sync:feeds
+ RAILS_ENV=production bundle exec rake sync:feeds"
 """
 
 SYNC_BLOG = SSHOperator(
