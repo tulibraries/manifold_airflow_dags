@@ -16,6 +16,8 @@ TUPRESS_SFTP_PATH = \
         Variable.get("TUPRESS_SFTP_PATH")
 TUPRESS_WEB_PATH = \
         Variable.get("TUPRESS_WEB_PATH")
+TUPRESS_ADMIN_NAME = \
+        "conan_the_deployer"
 TUPRESS_USER_NAME = \
         Variable.get("TUP_ACCOUNT_NAME")
 
@@ -105,7 +107,7 @@ INGEST_DELTAS = SSHOperator(
 #
 REMOVE_CACHED_DELTAS = BashOperator(
     task_id='remove_cached_deltas',
-    bash_command=f"sudo su - %s bash -c && rm %s/%s" % (TUPRESS_USER_NAME, TUPRESS_WEB_PATH, "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}"),
+    bash_command=f"sudo su - %s bash -c && rm %s/%s" % (TUPRESS_ADMIN_NAME, TUPRESS_WEB_PATH, "{{ ti.xcom_pull(task_ids='get_file_to_transfer').replace(' ', '\ ') }}"),
     dag=DAG
 )
 
