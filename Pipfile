@@ -5,15 +5,14 @@ verify_ssl = true
 
 [packages]
 setuptools = "*"
-lxml = "==4.6.2"
 
 [dev-packages]
 pytest = "*"
-apache-airflow = "*"
+apache-airflow = "==1.10.14"
 pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
-tulflow = "==0.6.3"
+tulflow = "==0.7.2"
 
 [requires]
 python_version = "3.6"
