@@ -22,7 +22,7 @@ TUPRESS_USER_NAME = \
 DEFAULT_ARGS = {
     'owner': 'airflow',
     'start_date': datetime(2019, 5, 28),
-    'email': ['steven.ng@temple.edu'],
+    'email': ["svc.libdev@temple.edu"],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
@@ -133,4 +133,3 @@ SFTP_PUT_DELTA.set_upstream(SFTP_GET_DELTA)
 INGEST_DELTAS.set_upstream(SFTP_PUT_DELTA)
 REMOVE_CACHED_DELTAS.set_upstream(INGEST_DELTAS)
 SYNC_BLOG.set_upstream(REMOVE_CACHED_DELTAS)
-
