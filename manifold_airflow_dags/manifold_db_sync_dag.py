@@ -21,7 +21,7 @@ AIRFLOW_DATA_BUCKET = Variable.get("AIRFLOW_DATA_BUCKET")
 DEFAULT_ARGS = {
     'owner': 'airflow',
     'start_date': datetime(2019, 5, 28),
-    'email': ['steven.ng@temple.edu'],
+    'email': ["svc.libdev@temple.edu"],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
@@ -117,12 +117,12 @@ sudo su root - bash -c \
 """ % "{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['filename'] }}"
 
 
-## 
+##
 ## BEFORE RUNNING, MAKE SURE YOU HAVE SET UP THE MANIFOLD_{server}_DB and MANIFOLD_{server}_APP connections
-## you'll need to run this locally. When targetting manifold vagrant, they should use conan as user, 
-## host of host.docker.internal, and the ports as defined in the manifold vagrant host file 
+## you'll need to run this locally. When targetting manifold vagrant, they should use conan as user,
+## host of host.docker.internal, and the ports as defined in the manifold vagrant host file
 ## https://github.com/tulibraries/ansible-playbook-manifold/blob/qa/inventory/vagrant/hosts
-## 
+##
 ## If running locally on a Vagrant Box, replace the list ["QA","STAGE"] with ["VAGRANT"]
 ##
 for server in ["QA","STAGE"]:
@@ -172,4 +172,3 @@ for server in ["QA","STAGE"]:
     RESTART_RAILS_APP.set_upstream(RUN_DB_MIGRATION)
     CLEANUP_FILES.set_upstream(RESTART_RAILS_APP)
     CLEANUP_FILES.set_downstream(POST_SLACK)
-

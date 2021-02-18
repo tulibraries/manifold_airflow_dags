@@ -13,7 +13,7 @@ MANIFOLD_EVENTS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_EVENTS_SYN
 DEFAULT_ARGS = {
     'owner': 'airflow',
     'start_date': datetime(2019, 5, 28),
-    'email': ['chad.nelson@temple.edu'],
+    'email': ["svc.libdev@temple.edu"],
     'email_on_failure': False,
     'email_on_retry': False,
     'on_failure_callback': slackpostonfail,

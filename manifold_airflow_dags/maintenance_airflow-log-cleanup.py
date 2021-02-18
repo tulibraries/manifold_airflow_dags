@@ -25,7 +25,7 @@ SCHEDULE_INTERVAL = "@daily"
 # Who is listed as the owner of this DAG in the Airflow Web Server
 DAG_OWNER_NAME = "maintenance"
 # List of email address to send email alerts to if this job fails
-ALERT_EMAIL_ADDRESSES = [" svc.libdev@temple.edu "]
+ALERT_EMAIL_ADDRESSES = ["svc.libdev@temple.edu"]
 # Length to retain the log files if not already provided in the conf. If this
 # is set to 30, the job will remove those files that are 30 days old or older
 DEFAULT_MAX_LOG_AGE_IN_DAYS = Variable.get(

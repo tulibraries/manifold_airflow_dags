@@ -23,7 +23,7 @@ UPLOAD_FILENAME = f"manifold-{ datetime.now().strftime('%Y-%m-%dT%H%z')}.sqlc"
 DEFAULT_ARGS = {
     'owner': 'airflow',
     'start_date': datetime(2019, 5, 28),
-    'email': ['steven.ng@temple.edu'],
+    'email': ["svc.libdev@temple.edu"],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
