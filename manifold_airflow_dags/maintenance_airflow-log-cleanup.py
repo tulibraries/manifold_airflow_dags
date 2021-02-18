@@ -48,6 +48,14 @@ DIRECTORIES_TO_DELETE = [
     "prod_sc_az_reindex",
     "qa_sc_web_content_reindex",
     "prod_sc_web_content_reindex",
+    "maintenance_airflow-log-cleanup",
+    "manifold_blogs_sync",
+    "manifold_database_dump",
+    "manifold_database_sync",
+    "manifold_events_sync",
+    "manifold_generate_sitemap",
+    "manifold_hours_sync",
+    "tupress_database_delta"
 ]
 ENABLE_DELETE_CHILD_LOG = Variable.get(
     "airflow_log_cleanup__enable_delete_child_log", "False"
