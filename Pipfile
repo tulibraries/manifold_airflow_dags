@@ -12,7 +12,7 @@ apache-airflow = "==1.10.14"
 pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
-tulflow = "==0.7.2"
+tulflow = "==0.7.3"
 
 [requires]
 python_version = "3.6"
