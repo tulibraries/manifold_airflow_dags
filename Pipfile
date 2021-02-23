@@ -13,7 +13,7 @@ pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
 setuptools = "*"
-tulflow = "==0.7.3"
+tulflow = "==0.8.0"
 
 [requires]
 python_version = "3.6"
