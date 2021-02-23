@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "76d945a98470de50ffb193a52570d188b4d4d4545003cb1e1657859a0bd0f537"
+            "sha256": "aa4d9541182ee5df315723d66c0541c4464a1f1376d579450d362d82a59810b5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1057,11 +1057,11 @@
         },
         "tulflow": {
             "hashes": [
-                "sha256:04c1182e095e9300e131ddf3bf24cf3cb4f890cb7b0cb921d7e1cc7a30b01639",
-                "sha256:ea993a50933d3cd7baba68f9876284ae5e3859fe726a2fe9d605653ad893585b"
+                "sha256:aa92b9a91323a77fdb20a6790ce19f91938828671d22712619fd8d33f30dc032",
+                "sha256:dfe7f9319c2bd265e0da09e1678fdd4de393e9ed329e97db999883b85a65f083"
             ],
             "index": "pypi",
-            "version": "==0.7.3"
+            "version": "==0.8.0"
         },
         "typed-ast": {
             "hashes": [
