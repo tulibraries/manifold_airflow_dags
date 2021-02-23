@@ -4,15 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-setuptools = "*"
 
 [dev-packages]
 pytest = "*"
 apache-airflow = "==1.10.14"
+cryptography = "==3.3.2"
 pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
-tulflow = "==0.7.3"
+setuptools = "*"
+tulflow = "==0.8.0"
 
 [requires]
 python_version = "3.6"
