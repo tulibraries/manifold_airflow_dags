@@ -23,7 +23,7 @@ These the Airflow expectations for these Funnel Cake DAGs to successfully run:
 
 **Airflow Variables**
 
-These variable are initially set in `variablesjson`
+These variable are initially set in `variables.json`
 
 - `AIRFLOW_DATA_BUCKET`: The AWS S3 Bucket label (label / name, not ARN or URI) the harvested OAI-PMH XML data is put into / indexed from.
 - `MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL`: Cron schedule to sync blogs. (Usually `@daily`)
