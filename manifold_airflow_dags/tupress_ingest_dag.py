@@ -9,6 +9,7 @@ from airflow.contrib.hooks.sftp_hook import SFTPHook
 from airflow.models import Variable
 from airflow.contrib.operators.sftp_operator import SFTPOperator
 from airflow.operators.python_operator import PythonOperator
+from tulflow import tasks
 
 TUPRESS_HARVEST_SCHEDULE_INTERVAL = \
         Variable.get("TUPRESS_HARVEST_SCHEDULE_INTERVAL")
@@ -26,6 +27,7 @@ DEFAULT_ARGS = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
+    "on_failure_callback": tasks.execute_slackpostonfail,
     'retry_delay': timedelta(minutes=5),
 }
 
