@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 import airflow
 from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.operators.python_operator import PythonOperator
-from manifold_airflow_dags.task_slack_posts import slackpostonfail, slackpostonsuccess
+from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 
 MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_HOURS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL")

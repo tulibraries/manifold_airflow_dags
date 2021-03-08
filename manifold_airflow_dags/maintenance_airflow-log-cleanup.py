@@ -10,7 +10,7 @@ from airflow.configuration import conf
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import timedelta
-from manifold_airflow_dags.task_slack_posts import slackpostonfail, slackpostonsuccess
+from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os
 import logging
 import airflow

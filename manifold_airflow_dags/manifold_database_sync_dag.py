@@ -7,8 +7,8 @@ from airflow.models import Variable
 from airflow.contrib.operators.ssh_operator import SSHOperator
 from airflow.contrib.operators.s3_to_sftp_operator import S3ToSFTPOperator
 from airflow.operators.python_operator import PythonOperator
-from manifold_airflow_dags.task_slack_posts import slackpostonfail
-from manifold_airflow_dags.task_slack_posts import slackpostonsuccess
+from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail
+from manifold_airflow_dags.tasks.task_slack_posts import slackpostonsuccess
 
 MANIFOLD_INSTANCE_SSH_CONN = \
         BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
