@@ -4,7 +4,7 @@ import airflow
 import re
 from airflow.operators.bash_operator import BashOperator
 from airflow.hooks.base_hook import BaseHook
-from airflow.contrib.operators.ssh_operator import SSHOperator
+from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.contrib.hooks.sftp_hook import SFTPHook
 from airflow.models import Variable
 from airflow.contrib.operators.sftp_operator import SFTPOperator
