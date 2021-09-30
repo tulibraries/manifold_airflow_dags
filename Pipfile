@@ -8,7 +8,7 @@ verify_ssl = true
 [dev-packages]
 pytest = "*"
 apache-airflow = "==1.10.14"
-cryptography = "==3.3.2"
+cryptography = "==35.0.0"
 pylint = "*"
 paramiko = "*"
 sshtunnel = "*"
