@@ -2,8 +2,8 @@
 import airflow
 from datetime import datetime, timedelta
 from airflow.hooks.base_hook import BaseHook
-from airflow.hooks.S3_hook import S3Hook
 from airflow.models import Variable
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.providers.amazon.aws.transfers.s3_to_sftp import S3ToSFTPOperator
 from airflow.operators.python_operator import PythonOperator
