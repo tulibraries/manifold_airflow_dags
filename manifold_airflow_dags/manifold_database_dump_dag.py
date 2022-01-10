@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 import airflow
 from airflow.hooks.base_hook import BaseHook
 from airflow.models import Variable
-from airflow.contrib.operators.ssh_operator import SSHOperator
-from airflow.contrib.operators.sftp_to_s3_operator import SFTPToS3Operator
+from airflow.providers.ssh.operators.ssh import SSHOperator
+from airflow.providers.amazon.aws.transfers.sftp_to_s3 import SFTPToS3Operator
 from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonsuccess

@@ -7,7 +7,13 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
-apache-airflow = "==1.10.14"
+apache-airflow = "==1.10.15"
+apache-airflow-backport-providers-amazon = "*"
+apache-airflow-backport-providers-slack = "*"
+apache-airflow-backport-providers-ftp = "*"
+apache-airflow-backport-providers-http = "*"
+apache-airflow-backport-providers-sftp = "*"
+apache-airflow-backport-providers-ssh = "*"
 cryptography = "==3.3.2"
 jinja2 = "==2.11.3"
 pylint = "*"

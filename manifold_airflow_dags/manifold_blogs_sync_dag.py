@@ -1,7 +1,7 @@
 """Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
 from datetime import datetime, timedelta
 import airflow
-from airflow.contrib.operators.ssh_operator import SSHOperator
+from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 
