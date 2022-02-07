@@ -946,11 +946,11 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89",
-                "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"
+                "sha256:42901e6bd4bd4a0e533358a86e848427a49005a3256f657c5c8f8dd35ef137a9",
+                "sha256:dad48ffda394e5ad9aa3b7d7ddf339ed502e5e365b1350e0af65f4a602344b11"
             ],
             "index": "pypi",
-            "version": "==6.2.5"
+            "version": "==7.0.0"
         },
         "python-daemon": {
             "hashes": [
@@ -1100,11 +1100,11 @@
         },
         "slack-sdk": {
             "hashes": [
-                "sha256:54f2a5f7419f1ab932af9e3200f7f2f93db96e0f0eb8ad7d3b4214aa9f124641",
-                "sha256:aae6ce057e286a5e7fe7a9f256e85b886eee556def8e04b82b08f699e64d7f67"
+                "sha256:9d9db582f81fbe3f24663386eb6bfb76ef15e43690ac54d5633d76dd4849c6ba",
+                "sha256:d817be1b6e665d9fcb0fc2339f61ed5da091c944d3d7c9bb86df10d34ec00403"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.13.0"
+            "version": "==3.14.0"
         },
         "sqlalchemy": {
             "hashes": [
@@ -1214,6 +1214,14 @@
             ],
             "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.10.2"
+        },
+        "tomli": {
+            "hashes": [
+                "sha256:b5bde28da1fed24b9bd1d4d2b8cba62300bfb4ec9a6187a957e8ddb9434c5224",
+                "sha256:c292c34f58502a1eb2bbb9f5bbc9a5ebc37bee10ffb8c2d6bbdfa8eb13cc14e1"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2.0.0"
         },
         "tulflow": {
             "hashes": [
