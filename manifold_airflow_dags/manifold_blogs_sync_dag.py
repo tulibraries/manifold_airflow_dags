@@ -52,7 +52,6 @@ sync_blogs = SSHOperator(
 post_slack = PythonOperator(
     task_id="slack_post_succ",
     python_callable=slackpostonsuccess,
-    provide_context=True,
     dag=MANIFOLD_BLOGS_SYNC_DAG
 )
 
