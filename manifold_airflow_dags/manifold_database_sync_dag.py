@@ -61,7 +61,6 @@ def newest_key_with_prefix(aws_conn_id, bucket, prefix):
 DETERMINE_S3_DB_DUMP_FILE = PythonOperator(
     task_id="get_latest_db_dump_in_s3",
     python_callable=newest_key_with_prefix,
-    provide_context=False,
     op_kwargs={
         "aws_conn_id": AIRFLOW_S3_CONN_ID,
         "bucket": AIRFLOW_DATA_BUCKET,

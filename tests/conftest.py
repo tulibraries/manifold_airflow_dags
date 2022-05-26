@@ -10,7 +10,7 @@ def pytest_sessionstart():
     file after command line options have been parsed.
     """
     repo_dir = os.getcwd()
-    subprocess.run("airflow initdb", shell=True)
+    subprocess.run("airflow db init", shell=True)
     subprocess.run("mkdir -p dags/manifold_airflow_dags", shell=True)
     subprocess.run("mkdir -p data", shell=True)
     subprocess.run("mkdir -p logs", shell=True)
@@ -49,4 +49,4 @@ def pytest_sessionfinish():
     subprocess.run("rm -rf dags", shell=True)
     subprocess.run("rm -rf data", shell=True)
     subprocess.run("rm -rf logs", shell=True)
-    subprocess.run("yes | airflow resetdb", shell=True)
+    subprocess.run("yes | airflow db reset", shell=True)
