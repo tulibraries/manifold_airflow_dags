@@ -2,6 +2,8 @@
 import os
 import subprocess
 import airflow
+from airflow.models import Variable, Connection
+from airflow.settings import Session
 
 def pytest_sessionstart():
     """
@@ -17,26 +19,26 @@ def pytest_sessionstart():
     subprocess.run("cp *.py dags/manifold_airflow_dags", shell=True)
     subprocess.run("cp -r configs dags/manifold_airflow_dags", shell=True)
     subprocess.run("cp -r scripts dags/manifold_airflow_dags", shell=True)
-    airflow.models.Variable.set("AIRFLOW_HOME", repo_dir)
-    airflow.models.Variable.set("AIRFLOW_DATA_DIR", repo_dir + '/data')
-    airflow.models.Variable.set("AIRFLOW_LOG_DIR", repo_dir + '/logs')
-    airflow.models.Variable.set("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL", "@weekly")
-    airflow.models.Variable.set("MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL", "@weekly")
-    airflow.models.Variable.set("MANIFOLD_DUMP_DATABASE_SCHEDULE_INTERVAL", "@weekly")
-    airflow.models.Variable.set("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL", "@weekly")
+    Variable.set("AIRFLOW_HOME", repo_dir)
+    Variable.set("AIRFLOW_DATA_DIR", repo_dir + '/data')
+    Variable.set("AIRFLOW_LOG_DIR", repo_dir + '/logs')
+    Variable.set("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL", "@weekly")
+    Variable.set("MANIFOLD_BLOGS_SYNC_SCHEDULE_INTERVAL", "@weekly")
+    Variable.set("MANIFOLD_DUMP_DATABASE_SCHEDULE_INTERVAL", "@weekly")
+    Variable.set("MANIFOLD_HOURS_SYNC_SCHEDULE_INTERVAL", "@weekly")
 
 
-    manifold = airflow.models.Connection(
+    manifold = Connection(
                 conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
                 conn_type="SSH",
                 )
-    slack = airflow.models.Connection(
+    slack = Connection(
                 conn_id="AIRFLOW_CONN_SLACK_WEBHOOK",
                 conn_type="http",
                 host="127.0.0.1/services",
                 port="",
                 )
-    airflow_session = airflow.settings.Session()
+    airflow_session = Session()
     airflow_session.add(manifold)
     airflow_session.add(slack)
     airflow_session.commit()
