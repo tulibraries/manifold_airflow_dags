@@ -7,8 +7,8 @@ airflow trigger_dag --conf '[curly-braces]"maxLogAgeInDays":30[curly-braces]' ai
 """
 from airflow.models import DAG, Variable
 from airflow.configuration import conf
-from airflow.operators.bash_operator import BashOperator
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
+from airflow.operators.empty import EmptyOperator
 from datetime import timedelta
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os

@@ -2,13 +2,13 @@
 from datetime import datetime, timedelta
 import airflow
 import re
-from airflow.operators.bash_operator import BashOperator
-from airflow.hooks.base_hook import BaseHook
+from airflow.operators.bash import BashOperator
+from airflow.hooks.base import BaseHook
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.providers.sftp.hooks.sftp import SFTPHook
 from airflow.models import Variable
 from airflow.providers.sftp.operators.sftp import SFTPOperator
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from tulflow import tasks
 
 TUPRESS_HARVEST_SCHEDULE_INTERVAL = \
