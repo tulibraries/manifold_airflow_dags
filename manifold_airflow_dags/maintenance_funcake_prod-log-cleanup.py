@@ -94,7 +94,7 @@ if hasattr(dag, 'doc_md'):
 if hasattr(dag, 'catchup'):
     dag.catchup = False
 
-start = DummyOperator(
+start = EmptyOperator(
     task_id='start',
     dag=dag)
 
