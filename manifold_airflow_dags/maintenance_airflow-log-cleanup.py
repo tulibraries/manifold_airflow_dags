@@ -7,19 +7,23 @@ airflow trigger_dag --conf '[curly-braces]"maxLogAgeInDays":30[curly-braces]' ai
 """
 from airflow.models import DAG, Variable
 from airflow.configuration import conf
-from airflow.operators.bash_operator import BashOperator
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
+from airflow.operators.empty import EmptyOperator
 from datetime import timedelta
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os
 import logging
 import airflow
+import jinja2
 
 
 # airflow-log-cleanup
 DAG_ID = os.path.basename(__file__).replace(".pyc", "").replace(".py", "")
 START_DATE = airflow.utils.dates.days_ago(1)
-BASE_LOG_FOLDER = conf.get("core", "BASE_LOG_FOLDER")
+try:
+    BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER").rstrip("/")
+except Exception as e:
+    BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER").rstrip("/")
 # How often to Run. @daily - Once a day at Midnight
 SCHEDULE_INTERVAL = "@daily"
 # Who is listed as the owner of this DAG in the Airflow Web Server
@@ -67,7 +71,7 @@ logging.info("ENABLE_DELETE_CHILD_LOG  " + ENABLE_DELETE_CHILD_LOG)
 if not BASE_LOG_FOLDER or BASE_LOG_FOLDER.strip() == "":
     raise ValueError(
         "BASE_LOG_FOLDER variable is empty in airflow.cfg. It can be found "
-        "under the [core] section in the cfg file. Kindly provide an "
+        "under the [logging] section in the cfg file. Kindly provide an "
         "appropriate directory path."
     )
 
@@ -100,21 +104,22 @@ dag = DAG(
     DAG_ID,
     default_args=default_args,
     schedule_interval=SCHEDULE_INTERVAL,
-    start_date=START_DATE
+    start_date=START_DATE,
+    template_undefined=jinja2.Undefined
 )
 if hasattr(dag, 'doc_md'):
     dag.doc_md = __doc__
 if hasattr(dag, 'catchup'):
     dag.catchup = False
 
-start = DummyOperator(
+start = EmptyOperator(
     task_id='start',
     dag=dag)
 
 log_cleanup = """
 
 echo "Getting Configurations..."
-BASE_LOG_FOLDER="{{params.base_log_folder}}/{{params.directory}}"
+BASE_LOG_FOLDER="{{params.directory}}"
 WORKER_SLEEP_TIME="{{params.sleep_time}}"
 
 sleep ${WORKER_SLEEP_TIME}s
@@ -238,7 +243,6 @@ for log_cleanup_id in range(1, NUMBER_OF_WORKERS + 1):
             params={
                 "directory": str(directory),
                 "sleep_time": int(log_cleanup_id)*3,
-                "base_log_folder": str(BASE_LOG_FOLDER),
                 },
             dag=dag)
 

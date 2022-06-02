@@ -1,12 +1,12 @@
 """Airflow DAG to Sync Prod DB to Qa and Stage"""
 import airflow
 from datetime import datetime, timedelta
-from airflow.hooks.base import BaseHook
+from airflow.hooks.base_hook import BaseHook
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.providers.amazon.aws.transfers.s3_to_sftp import S3ToSFTPOperator
-from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import PythonOperator
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 
 MANIFOLD_INSTANCE_SSH_CONN = \

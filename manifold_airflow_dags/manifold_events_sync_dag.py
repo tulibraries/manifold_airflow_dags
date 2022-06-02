@@ -2,10 +2,10 @@
 from datetime import datetime, timedelta
 import airflow
 from airflow.providers.ssh.operators.ssh import SSHOperator
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 
-MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base_hook.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
+MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_EVENTS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL")
 #
 # CREATE DAG
@@ -52,7 +52,6 @@ sync_events = SSHOperator(
 post_slack = PythonOperator(
     task_id="slack_post_succ",
     python_callable=slackpostonsuccess,
-    provide_context=True,
     dag=MANIFOLD_EVENTS_SYNC_DAG
 )
 

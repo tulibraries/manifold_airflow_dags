@@ -3,18 +3,19 @@ A maintenance workflow to clean out the task logs in funcake_dags to avoid those
 """
 from airflow.models import DAG, Variable
 from airflow.configuration import conf
-from airflow.operators.bash_operator import BashOperator
-from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
+from airflow.operators.empty import EmptyOperator
 from datetime import timedelta
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os
 import logging
+import jinja2
 import airflow
 
 # airflow-log-cleanup
 DAG_ID = os.path.basename(__file__).replace(".pyc", "").replace(".py", "")
 START_DATE = airflow.utils.dates.days_ago(1)
-BASE_LOG_FOLDER = conf.get("core", "BASE_LOG_FOLDER")
+BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER")
 # How often to Run. @daily - Once a day at Midnight
 SCHEDULE_INTERVAL = "@daily"
 # Who is listed as the owner of this DAG in the Airflow Web Server
@@ -53,7 +54,7 @@ logging.info("ENABLE_DELETE_CHILD_LOG  " + ENABLE_DELETE_CHILD_LOG)
 if not BASE_LOG_FOLDER or BASE_LOG_FOLDER.strip() == "":
     raise ValueError(
         "BASE_LOG_FOLDER variable is empty in airflow.cfg. It can be found "
-        "under the [core] section in the cfg file. Kindly provide an "
+        "under the [logging] section in the cfg file. Kindly provide an "
         "appropriate directory path."
     )
 
@@ -93,7 +94,7 @@ if hasattr(dag, 'doc_md'):
 if hasattr(dag, 'catchup'):
     dag.catchup = False
 
-start = DummyOperator(
+start = EmptyOperator(
     task_id='start',
     dag=dag)
 
