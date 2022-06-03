@@ -20,10 +20,7 @@ import jinja2
 # airflow-log-cleanup
 DAG_ID = os.path.basename(__file__).replace(".pyc", "").replace(".py", "")
 START_DATE = airflow.utils.dates.days_ago(1)
-try:
-    BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER").rstrip("/")
-except Exception as e:
-    BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER").rstrip("/")
+BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER").rstrip("/")
 # How often to Run. @daily - Once a day at Midnight
 SCHEDULE_INTERVAL = "@daily"
 # Who is listed as the owner of this DAG in the Airflow Web Server
@@ -119,7 +116,7 @@ start = EmptyOperator(
 log_cleanup = """
 
 echo "Getting Configurations..."
-BASE_LOG_FOLDER="{{params.directory}}"
+BASE_LOG_FOLDER="{{params.base_log_folder}}/{{params.directory}}"
 WORKER_SLEEP_TIME="{{params.sleep_time}}"
 
 sleep ${WORKER_SLEEP_TIME}s
@@ -243,6 +240,7 @@ for log_cleanup_id in range(1, NUMBER_OF_WORKERS + 1):
             params={
                 "directory": str(directory),
                 "sleep_time": int(log_cleanup_id)*3,
+                "base_log_folder": str(BASE_LOG_FOLDER),
                 },
             dag=dag)
 

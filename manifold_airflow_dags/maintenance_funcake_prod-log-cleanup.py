@@ -87,7 +87,8 @@ dag = DAG(
     DAG_ID,
     default_args=default_args,
     schedule_interval=SCHEDULE_INTERVAL,
-    start_date=START_DATE
+    start_date=START_DATE,
+    template_undefined=jinja2.Undefined
 )
 if hasattr(dag, 'doc_md'):
     dag.doc_md = __doc__
