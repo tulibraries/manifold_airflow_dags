@@ -69,12 +69,12 @@ jobs:
 
 workflows:
   version: 2
-  qa_deploy:
+  run_tests:
     jobs:
       - lint_and_test
+  qa_deploy:
+    jobs:
       - qa_deploy:
-          requires:
-            - lint_and_test
           filters:
             branches:
               only:

@@ -17,7 +17,7 @@ DAG_ID = os.path.basename(__file__).replace(".pyc", "").replace(".py", "")
 START_DATE = airflow.utils.dates.days_ago(1)
 BASE_LOG_FOLDER = conf.get("logging", "BASE_LOG_FOLDER")
 # How often to Run. @daily - Once a day at Midnight
-SCHEDULE_INTERVAL = "@daily"
+SCHEDULE_INTERVAL = "@weekly"
 # Who is listed as the owner of this DAG in the Airflow Web Server
 DAG_OWNER_NAME = "maintenance"
 # List of email address to send email alerts to if this job fails
