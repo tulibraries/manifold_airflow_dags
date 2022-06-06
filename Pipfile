@@ -6,7 +6,7 @@ verify_ssl = true
 [packages]
 
 [dev-packages]
-apache-airflow = "==2.3.0"
+apache-airflow = "==2.3.2"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-ftp = "*"
 apache-airflow-providers-http = "*"
