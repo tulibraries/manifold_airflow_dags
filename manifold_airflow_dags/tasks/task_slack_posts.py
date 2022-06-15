@@ -10,7 +10,7 @@ def slackpostonsuccess(**context):
     ti = context.get('task_instance')
     logurl = ti.log_url
     dagid = ti.dag_id
-    date = context.get('execution_date')
+    date = context.get('data_interval_start')
     msg = "{} DAG {} success: {}".format(
         date,
         dagid,

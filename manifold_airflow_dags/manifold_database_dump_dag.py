@@ -19,7 +19,7 @@ AIRFLOW_DATA_BUCKET = \
         Variable.get("AIRFLOW_DATA_BUCKET")
 
 DUMP_PATH = "/tmp"
-UPLOAD_FILENAME = f"manifold-{ datetime.now().strftime('%Y-%m-%dT%H%z')}.sqlc"
+UPLOAD_FILENAME = "manifold-{{ data_interval_start.strftime('%Y-%m-%dT%H%z')}}.sqlc"
 DEFAULT_ARGS = {
     'owner': 'airflow',
     'start_date': datetime(2019, 5, 28),
@@ -45,10 +45,9 @@ DAG = airflow.DAG(
 # Tasks with all logic contained in a single operator can be declared here.
 # Tasks with custom logic are relegated to individual Python files.
 
-SET_DUMP_NAME = PythonOperator(
+SET_DUMP_NAME = BashOperator(
     task_id="set_dump_name",
-    python_callable=datetime.now().strftime,
-    op_args=["%Y%m%d_%H%M%S"],
+    bash_command='echo ' + "{{ data_interval_start.strftime('%Y%m%d_%H%M%S') }}",
     dag=DAG
 )
 
