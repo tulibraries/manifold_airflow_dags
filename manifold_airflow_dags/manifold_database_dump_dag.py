@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import airflow
 from airflow.hooks.base import BaseHook
 from airflow.models import Variable
+from airflow.operators.bash import BashOperator
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.providers.amazon.aws.transfers.sftp_to_s3 import SFTPToS3Operator
 from airflow.operators.python import PythonOperator
