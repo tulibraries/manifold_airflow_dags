@@ -83,11 +83,11 @@
         },
         "apache-airflow-providers-slack": {
             "hashes": [
-                "sha256:1839ff991e7456f7a7d370129d1e8b4b22526cdfe8a6d918976de5b3eb606128",
-                "sha256:ea7811aaf9e397b4ff567e4248981781953f6b7f7db9c1f77be0aa0af61a826a"
+                "sha256:a9191ae58a6d8427ad4aeee73edb4074543d28ca89e4b5a1ff01ae61867ce514",
+                "sha256:e8de3b7234f1deca15383fbc77dd54c98a2c701ee107f51d73003f208a293735"
             ],
             "index": "pypi",
-            "version": "==4.2.3"
+            "version": "==5.0.0"
         },
         "apache-airflow-providers-sqlite": {
             "hashes": [
@@ -215,7 +215,7 @@
                 "sha256:211800f725cdecedcbcf4c753bbd22d248312b37d130f06045434acb7d9b34e1",
                 "sha256:35dd9063244263e63bd0bd24ea61e3015b00272cead084b2c40d788b0f857c46"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
+            "markers": "python_version >= '3.7' and python_version < '4.0'",
             "version": "==1.10.0"
         },
         "certifi": {
@@ -423,7 +423,7 @@
                 "sha256:0f7569a4a6ff151958b64304071d370daa3243d15941a7beedf0c9fe5105603e",
                 "sha256:a851e51367fb93e9e1361732c1d60dab63eff98712e503ea7d92e6eccb109b4f"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
+            "markers": "python_version >= '3.6' and python_version < '4.0'",
             "version": "==2.2.1"
         },
         "docutils": {
@@ -478,7 +478,7 @@
                 "sha256:793f9e720d0e679cea8f99af6436819bfd1622fc345afeff48878c09f42548f6",
                 "sha256:f582bba980fcf728ab7250dbb6fbdca8d4e074e24eb2915b01184376ffff98c7"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
+            "markers": "python_version >= '3.6' and python_version < '4.0'",
             "version": "==4.4.2"
         },
         "flask-login": {
@@ -649,7 +649,7 @@
                 "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7",
                 "sha256:e8443a5e7a020e9d7f97f1d7d9cd17c88bcb3bc7e218bf9cf5095fe550be2951"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
             "version": "==5.10.1"
         },
         "itsdangerous": {
@@ -1362,7 +1362,7 @@
                 "sha256:bc7861137fbce630f17b03d3ad02ad0bf978c844f3536d0edda6499dafce2b6f",
                 "sha256:d568723a7ebd25875d8d1eaf5dfa068cd2fc8194b2e483d7b1f7c81918dbec6b"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
+            "markers": "python_version >= '3.7' and python_version < '4.0'",
             "version": "==2.28.0"
         },
         "requests-mock": {
@@ -1396,7 +1396,7 @@
                 "sha256:2eb4e6894cde1e017976d2975ac210ef515d7548bc595ba20e195fb9628acdeb",
                 "sha256:63a5c5ce3673d3d5fbbf23cd87e11ab84b6b451436f1b7f19ec54b6bc36ed7ca"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.3'",
+            "markers": "python_version < '4.0' and python_full_version >= '3.6.3'",
             "version": "==12.5.1"
         },
         "s3transfer": {
@@ -1665,7 +1665,7 @@
                 "sha256:1c5bebdf19d5051e2e1de6cf70adfc5948d47221f097fcff7a3ffc91e953eaf5",
                 "sha256:61901f81ff4017951119cd0d1ed9b7af31c821d6845c8c477587bbdcd5e5854e"
             ],
-            "markers": "python_version >= '3.6' and python_version < '4'",
+            "markers": "python_version >= '3.6' and python_version < '4.0'",
             "version": "==0.11.1"
         },
         "tulflow": {
@@ -1703,7 +1703,7 @@
                 "sha256:8298d6d56d39be0e3bc13c1c97d133f9b45d797169a0e11cdd0e0489d786f7ec",
                 "sha256:879ba4d1e89654d9769ce13121e0f94310ea32e8d2f8cf587b77c08bbcdb30d6"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5' and python_version < '4.0'",
             "version": "==1.26.10"
         },
         "watchtower": {
