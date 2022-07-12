@@ -75,11 +75,11 @@
         },
         "apache-airflow-providers-sftp": {
             "hashes": [
-                "sha256:b3da8e27feaffea7358c678e104983f5c93c398503d9863faab4ad94682dac33",
-                "sha256:bbee56bcc85caa040c46833720ba7ad5e18a55a7ce10665e68869e005f7a402f"
+                "sha256:14454ec4781c8b992d68a421eaedeb9769c1fc0fbc13a9508ea93a930c56f54c",
+                "sha256:263374fc33128e8e888ffc90a0d98c7379c0f8a6801cb83f36cfbe68a5085d03"
             ],
             "index": "pypi",
-            "version": "==2.6.0"
+            "version": "==3.0.0"
         },
         "apache-airflow-providers-slack": {
             "hashes": [
