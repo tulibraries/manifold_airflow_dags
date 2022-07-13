@@ -59,11 +59,11 @@
         },
         "apache-airflow-providers-http": {
             "hashes": [
-                "sha256:559b88f2498f9d9745da05baa2c4e14fd83915c4b9f274a1d9854a0b849908ab",
-                "sha256:5f04226bcd5627037d3e903dcb0c0b744cedc903f68d7eeda25c37e8d6d26f36"
+                "sha256:3ad9d15908eda184a7f5b841c0912340f51380aeeb2171d4afd34c460313c4b6",
+                "sha256:e83bc4ba55b81dae353de2b5f431fec66f48eed61474afae8a1580e2374fa0ab"
             ],
             "index": "pypi",
-            "version": "==2.1.2"
+            "version": "==3.0.0"
         },
         "apache-airflow-providers-imap": {
             "hashes": [
