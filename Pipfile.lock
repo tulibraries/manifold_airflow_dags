@@ -19,11 +19,11 @@
     "develop": {
         "alembic": {
             "hashes": [
-                "sha256:a2d4d90da70b30e70352cd9455e35873a255a31402a438fe24815758d7a0e5e1",
-                "sha256:b5ae4bbfc7d1302ed413989d39474d102e7cfa158f6d5969d2497955ffe85a30"
+                "sha256:0a024d7f2de88d738d7395ff866997314c837be6104e90c5724350313dee4da4",
+                "sha256:cd0b5e45b14b706426b833f06369b9a6d5ee03f826ec3238723ce8caaf6e5ffa"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.8.0"
+            "version": "==1.8.1"
         },
         "anyio": {
             "hashes": [
@@ -48,6 +48,14 @@
             ],
             "index": "pypi",
             "version": "==4.0.0"
+        },
+        "apache-airflow-providers-common-sql": {
+            "hashes": [
+                "sha256:6a8449fb348414315abfac5011e12f00f475a4f961c23d317ad2d7cf629d4b61",
+                "sha256:e8eed030dd1d2d13a710268296ecc9357d3ee982cb5718230189933ca04ee76c"
+            ],
+            "markers": "python_version ~= '3.7'",
+            "version": "==1.0.0"
         },
         "apache-airflow-providers-ftp": {
             "hashes": [
@@ -83,19 +91,19 @@
         },
         "apache-airflow-providers-slack": {
             "hashes": [
-                "sha256:1839ff991e7456f7a7d370129d1e8b4b22526cdfe8a6d918976de5b3eb606128",
-                "sha256:ea7811aaf9e397b4ff567e4248981781953f6b7f7db9c1f77be0aa0af61a826a"
+                "sha256:c55e04f2239a5d6378c81798a9c9073177befee12da3002404d72d5b38543c98",
+                "sha256:e9728c099b0a302f74ad06314cd4dda91a6a26e12665612a417447c698376e92"
             ],
             "index": "pypi",
-            "version": "==4.2.3"
+            "version": "==5.1.0"
         },
         "apache-airflow-providers-sqlite": {
             "hashes": [
-                "sha256:519aae61c790400ac82b160cd779b6bb68e7af8bb099bc91bbf970e22731fe2b",
-                "sha256:fb292c8d5e0557410ae95b70972768b5a409c4d3c84a611d53b22cd1c1f89187"
+                "sha256:ba1bc6f95bde88b2f04cb4bcb8fdba10ce54f290a4fab33097d48757359cb6de",
+                "sha256:bfb06f2a88c9d79117dd90d5ccde45c941825242257de89e2f59f82fa9e16f22"
             ],
             "markers": "python_version ~= '3.7'",
-            "version": "==3.0.0"
+            "version": "==3.1.0"
         },
         "apache-airflow-providers-ssh": {
             "hashes": [
@@ -182,9 +190,11 @@
         },
         "blinker": {
             "hashes": [
-                "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"
+                "sha256:1eb563df6fdbc39eeddc177d953203f99f097e9bf0e2b8f9f3cf18b6ca425e36",
+                "sha256:923e5e2f69c155f2cc42dafbbd70e16e3fde24d2d4aa2ab72fbe386238892462"
             ],
-            "version": "==1.4"
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
+            "version": "==1.5"
         },
         "boto3": {
             "hashes": [
@@ -196,11 +206,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:b00da6290d8d42c6c3048b045d6537421e8b83e03b4f24bb44c5ea9f37ab6258",
-                "sha256:cd4dff88419c7b6865f91551db3eb526283ebc56dc99f1d9b7adb5aa080674f8"
+                "sha256:b0cc79fb5a37a0e2b6befe86efd027b92101d819f1fdc56cfff39f2eb239f232",
+                "sha256:cbe87fa791aa4e8c3da64b1ccbaca7f809f6d1fba8d0b1855de2989815ef8736"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.27.28"
+            "version": "==1.27.31"
         },
         "cachelib": {
             "hashes": [
@@ -836,11 +846,11 @@
         },
         "markdown": {
             "hashes": [
-                "sha256:cbb516f16218e643d8e0a95b309f77eb118cb138d39a4f27851e6a63581db874",
-                "sha256:f5da449a6e1c989a4cea2631aa8ee67caa5a2ef855d551c88f9e309f4634c621"
+                "sha256:08fb8465cffd03d10b9dd34a5c3fea908e20391a2a90b88d66362cb05beed186",
+                "sha256:3b809086bb6efad416156e00a0da66fe47618a5d6918dd688f53f40c8e4cfeff"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==3.3.7"
+            "markers": "python_version >= '3.7'",
+            "version": "==3.4.1"
         },
         "markdown-it-py": {
             "hashes": [
@@ -1494,11 +1504,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:16923d366ced322712c71ccb97164d07472abeecd13f3a6c283f6d5d26722793",
-                "sha256:db3b8e2f922b2a910a29804776c643ea609badb6a32c4bcc226fd4fd902cce65"
+                "sha256:0d33c374d41c7863419fc8f6c10bfe25b7b498aa34164d135c622e52580c6b16",
+                "sha256:c04b44a57a6265fe34a4a444e965884716d34bae963119a76353434d6f18e450"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==63.1.0"
+            "version": "==63.2.0"
         },
         "sickle": {
             "hashes": [
@@ -1657,7 +1667,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==2.0.1"
         },
         "tomlkit": {
