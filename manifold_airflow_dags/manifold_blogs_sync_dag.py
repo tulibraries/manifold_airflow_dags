@@ -26,7 +26,7 @@ MANIFOLD_BLOGS_SYNC_DAG = airflow.DAG(
     catchup=False,
     default_args=DEFAULT_ARGS,
     max_active_runs=1,
-    schedule_interval=MANIFOLD_BLOGS_SYNC_INTERVAL
+    schedule=MANIFOLD_BLOGS_SYNC_INTERVAL
 )
 
 #
