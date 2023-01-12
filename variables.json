@@ -4,10 +4,4 @@
   "MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL": "@daily",
   "MANIFOLD_DUMP_DATABASE_SCHEDULE_INTERVAL": "@weekly",
   "MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL": "@daily",
-  "TUP_ACCOUNT_NAME": "tupress",
-  "TUPRESS_HARVEST_SCHEDULE_INTERVAL": "0 8 * * *",
-  "TUPRESS_SFTP_URL": "sftp.tul-infra.page",
-  "TUPRESS_WEB_URL": "104.200.30.160",
-  "TUPRESS_SFTP_PATH": "/incoming",
-  "TUPRESS_WEB_PATH": "/usr/local/share/tupress"
 }
