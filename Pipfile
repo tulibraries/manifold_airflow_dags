@@ -17,7 +17,7 @@ boto3 = "*"
 importlib_metadata = "*"
 moto = "*"
 # numpy required in circleci context.
-numpy= "*"
+numpy = "*"
 paramiko = "*"
 pexpect = "*"
 pylint = "*"
@@ -29,4 +29,4 @@ sshtunnel = "*"
 tulflow = "*"
 
 [requires]
-python_version = "3"
+python_version = "3.9"
