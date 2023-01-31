@@ -1,4 +1,4 @@
-"""Airflow DAG to Run the Sitemap Create rake task on a Manifold instance"""
+"""Airflow DAG to Run the Finding Aids JSON task on a Manifold instance"""
 from datetime import datetime, timedelta
 import airflow
 from airflow.providers.ssh.operators.ssh import SSHOperator
