@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "135da37cf1ff777b2c0a0c956edff7ad535da1b771ba6b016c3f4eefea071249"
+            "sha256": "4755d42ff7da23a99c12584baf837b10cc023803a4ae575c393adb17124e87a1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -136,11 +136,11 @@
         },
         "apache-airflow": {
             "hashes": [
-                "sha256:243e4ddc64fba84ad445530a561a0e15eda2a7bc8aabc7923baf4ed40e9cb9cb",
-                "sha256:cc0b7fc1446235aeb4d8a792f03d39c24b300c46ac072b73f84d918f27c7c006"
+                "sha256:ec97fb84b962621431600555ac3a20e1696cf0a4cc84ed27e591438ce92c2ff4",
+                "sha256:ee7ff3e459123bc60b40caba0e32a2fb88d30f3bf5c1780a95bad8ecabd8cc10"
             ],
             "index": "pypi",
-            "version": "==2.4.2"
+            "version": "==2.5.1"
         },
         "apache-airflow-providers-amazon": {
             "hashes": [
@@ -553,8 +553,7 @@
         },
         "connexion": {
             "extras": [
-                "flask",
-                "swagger-ui"
+                "flask"
             ],
             "hashes": [
                 "sha256:a73b96a0e07b16979a42cde7c7e26afe8548099e352cf350f80c57185e0e0b36",
@@ -2002,13 +2001,6 @@
             ],
             "index": "pypi",
             "version": "==0.4.0"
-        },
-        "swagger-ui-bundle": {
-            "hashes": [
-                "sha256:b462aa1460261796ab78fd4663961a7f6f347ce01760f1303bbbdf630f11f516",
-                "sha256:cea116ed81147c345001027325c1ddc9ca78c1ee7319935c3c75d3669279d575"
-            ],
-            "version": "==0.0.9"
         },
         "tabulate": {
             "hashes": [
