@@ -208,11 +208,11 @@
         },
         "apache-airflow-providers-ssh": {
             "hashes": [
-                "sha256:0e28ba4f9d2914b6adedd8a4dd7e1e188ceed5d94ff508ef2e39a16590c4b3db",
-                "sha256:f621712cbd43431e4d046715b2ec0bcae63bd70e161ba316a9d62f55ab3e1a2d"
+                "sha256:2a7be6ec928f4bbf3457c6e7bc0356dd0dfe24285976e2bc2fd1d59e8a7dd132",
+                "sha256:ce20374e1cfc28311fa720f2222dd58e3d0431e43309776fcaa96b61b5016059"
             ],
             "index": "pypi",
-            "version": "==3.5.0"
+            "version": "==3.6.0"
         },
         "apispec": {
             "extras": [
