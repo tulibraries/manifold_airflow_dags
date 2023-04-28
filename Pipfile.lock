@@ -325,11 +325,11 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:8972a5e0a04ea6f477c41e390765a46ec7bcffb62f99d4a0774ce70fb87bea59",
-                "sha256:97d942d958cac28687187b89ee88ac760e0fa3007094cb1d6b16e241144306f3"
+                "sha256:38ca632be379963f2a2749b5f63a81fe1679913b954914f470ad282c77674bbc",
+                "sha256:4d575c180312bec6108852bae12e6396b9d1bb404154d652c57ee849c62fbb83"
             ],
             "index": "pypi",
-            "version": "==1.26.110"
+            "version": "==1.26.122"
         },
         "botocore": {
             "hashes": [
@@ -623,7 +623,7 @@
                 "sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0",
                 "sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==0.3.6"
         },
         "dnspython": {
@@ -951,7 +951,7 @@
                 "sha256:8bef7dde241278824a6d83f44a544709b065191b95b6e50894bdc722fcba0504",
                 "sha256:f84c2818376e66cf843d497486ea8fed8700b340f308f076c6fb1229dff318b6"
             ],
-            "markers": "python_version >= '3.8'",
+            "markers": "python_full_version >= '3.8.0'",
             "version": "==5.12.0"
         },
         "itsdangerous": {
@@ -1883,11 +1883,11 @@
         },
         "slack-sdk": {
             "hashes": [
-                "sha256:cb74aa764ae32cd61971baa745d8bdf50ffea4ad06e4a0a2ab1e879ae6918496",
-                "sha256:fd04ca4aae3071fbd6b284b11ef39b6c72d687b1a2118f40dbcba9921da07d62"
+                "sha256:20829bdc1a423ec93dac903470975ebf3bc76fd3fd91a4dadc0eeffc940ecb0c",
+                "sha256:de3c07b92479940b61cd68c566f49fbc9974c8f38f661d26244078f3903bb9cc"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.21.2"
+            "version": "==3.21.3"
         },
         "sniffio": {
             "hashes": [
@@ -2067,7 +2067,7 @@
                 "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb",
                 "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version >= '3.7'",
             "version": "==4.5.0"
         },
         "uc-micro-py": {
