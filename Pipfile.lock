@@ -623,7 +623,7 @@
                 "sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0",
                 "sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==0.3.6"
         },
         "dnspython": {
@@ -924,11 +924,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:43ce9281e097583d758c2c708c4376371261a02c34682491a8e98352365aad20",
-                "sha256:ff80f3b5394912eb1b108fcfd444dc78b7f1f3e16b16188054bd01cb9cb86f09"
+                "sha256:43dd286a2cd8995d5eaef7fee2066340423b818ed3fd70adf0bad5f1fac53fed",
+                "sha256:92501cdf9cc66ebd3e612f1b4f0c0765dfa42f0fa38ffb319b6bd84dd675d705"
             ],
             "index": "pypi",
-            "version": "==6.1.0"
+            "version": "==6.6.0"
         },
         "inflection": {
             "hashes": [
@@ -1883,11 +1883,11 @@
         },
         "slack-sdk": {
             "hashes": [
-                "sha256:cb74aa764ae32cd61971baa745d8bdf50ffea4ad06e4a0a2ab1e879ae6918496",
-                "sha256:fd04ca4aae3071fbd6b284b11ef39b6c72d687b1a2118f40dbcba9921da07d62"
+                "sha256:20829bdc1a423ec93dac903470975ebf3bc76fd3fd91a4dadc0eeffc940ecb0c",
+                "sha256:de3c07b92479940b61cd68c566f49fbc9974c8f38f661d26244078f3903bb9cc"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.21.2"
+            "version": "==3.21.3"
         },
         "sniffio": {
             "hashes": [
@@ -2067,7 +2067,7 @@
                 "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb",
                 "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version >= '3.7'",
             "version": "==4.5.0"
         },
         "uc-micro-py": {
