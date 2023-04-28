@@ -3,8 +3,6 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[packages]
-
 [dev-packages]
 apache-airflow = "==2.4.2"
 apache-airflow-providers-amazon = "*"
@@ -16,8 +14,6 @@ apache-airflow-providers-ssh = "*"
 boto3 = "*"
 importlib_metadata = "*"
 moto = "*"
-# numpy required in circleci context.
-numpy = "*"
 paramiko = "*"
 pexpect = "*"
 pylint = "*"
@@ -27,6 +23,12 @@ requests-mock = "*"
 sickle = "*"
 sshtunnel = "*"
 tulflow = "*"
+
+# required in circleci context.
+numpy = "*"
+pandas = "*"
+
+[packages]
 
 [requires]
 python_version = "3.9"
