@@ -1,5 +1,6 @@
 """Airflow DAG to Run the Sitemap Create rake task on a Manifold instance"""
 from datetime import datetime, timedelta
+import pendulum
 import airflow
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.operators.python import PythonOperator
@@ -11,18 +12,18 @@ MANIFOLD_GENERATE_SITEMAP_INTERVAL = airflow.models.Variable.get("MANIFOLD_GENER
 # CREATE DAG
 #
 DEFAULT_ARGS = {
-    'owner': 'airflow',
-    'start_date': datetime(2019, 5, 28),
-    'email': ["svc.libdev@temple.edu"],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'on_failure_callback': slackpostonfail,
-    'retries': 0,
-    'retry_delay': timedelta(minutes=5),
+    "owner": "airflow",
+    "start_date": pendulum.datetime(2019, 5, 28, tz="UTC"),
+    "email": ["svc.libdev@temple.edu"],
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "on_failure_callback": slackpostonfail,
+    "retries": 0,
+    "retry_delay": timedelta(minutes=5),
 }
 
 MANIFOLD_GENERATE_SITEMAP_DAG = airflow.DAG(
-    'manifold_generate_sitemap',
+    "manifold_generate_sitemap",
     catchup=False,
     default_args=DEFAULT_ARGS,
     max_active_runs=1,
@@ -43,14 +44,15 @@ sudo su - manifold bash -c \
 """
 
 generate_sitemap = SSHOperator(
-    task_id='generate_sitemap',
+    task_id="generate_sitemap",
     command=generate_sitemap_bash,
-    dag=MANIFOLD_GENERATE_SITEMAP_DAG,
-    ssh_conn_id='AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE'
+    cmd_timeout=None,
+    ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
+    dag=MANIFOLD_GENERATE_SITEMAP_DAG
 )
 
 post_slack = PythonOperator(
-    task_id='slack_post_succ',
+    task_id="slack_post_succ",
     python_callable=slackpostonsuccess,
     provide_context=True,
     dag=MANIFOLD_GENERATE_SITEMAP_DAG

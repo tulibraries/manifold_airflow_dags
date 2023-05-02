@@ -1,5 +1,6 @@
 """Airflow DAG to Run the Blogs Sync rake task on a Manifold instance"""
 from datetime import datetime, timedelta
+import pendulum
 import airflow
 from airflow.hooks.base import BaseHook
 from airflow.models import Variable
@@ -22,18 +23,18 @@ AIRFLOW_DATA_BUCKET = \
 DUMP_PATH = "/tmp"
 UPLOAD_FILENAME = "manifold-{{ data_interval_start.strftime('%Y-%m-%dT%H%z')}}.sqlc"
 DEFAULT_ARGS = {
-    'owner': 'airflow',
-    'start_date': datetime(2019, 5, 28),
-    'email': ["svc.libdev@temple.edu"],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 0,
-    'on_failure_callback': slackpostonfail,
-    'retry_delay': timedelta(minutes=5),
+    "owner": "airflow",
+    "start_date": pendulum.datetime(2019, 5, 28, tz="UTC"),
+    "email": ["svc.libdev@temple.edu"],
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 0,
+    "on_failure_callback": slackpostonfail,
+    "retry_delay": timedelta(minutes=5),
 }
 
 DAG = airflow.DAG(
-    'manifold_database_dump',
+    "manifold_database_dump",
     default_args=DEFAULT_ARGS,
     catchup=False,
     max_active_runs=1,
@@ -48,7 +49,7 @@ DAG = airflow.DAG(
 
 SET_DUMP_NAME = BashOperator(
     task_id="set_dump_name",
-    bash_command='echo ' + "{{ data_interval_start.strftime('%Y%m%d_%H%M%S') }}",
+    bash_command="echo " + "{{ data_interval_start.strftime('%Y%m%d_%H%M%S') }}",
     dag=DAG
 )
 
@@ -59,8 +60,9 @@ sudo su - postgres bash -c \
 """ % "{{ ti.xcom_pull(task_ids='set_dump_name') }}"
 
 DUMP_DATABASE = SSHOperator(
-    task_id='dump_database',
+    task_id="dump_database",
     command=dump_database_bash,
+    cmd_timeout=None,
     ssh_conn_id="manifold-db",
     dag=DAG
 )
@@ -69,7 +71,7 @@ DUMP_DATABASE = SSHOperator(
 # Copy the dump file to S3
 #
 DATABASE_DUMP_TO_S3 = SFTPToS3Operator(
-    task_id='database_dump_to_s3',
+    task_id="database_dump_to_s3",
     sftp_conn_id="manifold-db",
     sftp_path=f"{ DUMP_PATH }/dbdump_%s.sqlc" % "{{ ti.xcom_pull(task_ids='set_dump_name') }}",
     s3_conn_id="AIRFLOW_S3",
