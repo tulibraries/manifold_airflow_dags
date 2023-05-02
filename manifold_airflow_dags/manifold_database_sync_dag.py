@@ -1,5 +1,6 @@
 """Airflow DAG to Sync Prod DB to Qa and Stage"""
 import airflow
+import pendulum
 from datetime import datetime, timedelta
 from airflow.hooks.base import BaseHook
 from airflow.models import Variable
@@ -18,18 +19,18 @@ AIRFLOW_S3_PREFIX = "manifold/"
 AIRFLOW_DATA_BUCKET = Variable.get("AIRFLOW_DATA_BUCKET")
 
 DEFAULT_ARGS = {
-    'owner': 'airflow',
-    'start_date': datetime(2019, 5, 28),
-    'email': ["svc.libdev@temple.edu"],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 0,
-    'on_failure_callback': slackpostonfail,
-    'retry_delay': timedelta(minutes=5),
+    "owner": "airflow",
+    "start_date":pendulum.datetime(2019, 5, 28, tz="UTC"),
+    "email": ["svc.libdev@temple.edu"],
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 0,
+    "on_failure_callback": slackpostonfail,
+    "retry_delay": timedelta(minutes=5),
 }
 
 DAG = airflow.DAG(
-    'manifold_database_sync',
+    "manifold_database_sync",
     default_args=DEFAULT_ARGS,
     catchup=False,
     max_active_runs=1,
@@ -54,9 +55,9 @@ DAG = airflow.DAG(
 def newest_key_with_prefix(aws_conn_id, bucket, prefix):
     client =  S3Hook(aws_conn_id=aws_conn_id).get_conn() # get the underlying boto3 client object
     s3_keys = client.list_objects_v2(Bucket=bucket, Prefix=prefix).get("Contents", [])
-    in_date_order = sorted(s3_keys, key= lambda k: k['LastModified'])
-    path = in_date_order[-1]['Key']
-    return {"full_path": path, "filename": path.split('/')[-1]}
+    in_date_order = sorted(s3_keys, key= lambda k: k["LastModified"])
+    path = in_date_order[-1]["Key"]
+    return {"full_path": path, "filename": path.split("/")[-1]}
 
 DETERMINE_S3_DB_DUMP_FILE = PythonOperator(
     task_id="get_latest_db_dump_in_s3",
