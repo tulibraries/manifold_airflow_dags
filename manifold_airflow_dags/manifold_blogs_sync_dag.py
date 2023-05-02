@@ -46,7 +46,7 @@ sudo su - manifold bash -c \
 sync_blogs = SSHOperator(
     task_id="sync_blogs",
     command=sync_blogs_bash,
-    cmd_timeout: None,
+    cmd_timeout=None,
     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
     dag=MANIFOLD_BLOGS_SYNC_DAG,
 )
