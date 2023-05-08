@@ -124,7 +124,7 @@ sudo su root - bash -c \
 ##
 ## If running locally on a Vagrant Box, replace the list ["QA","STAGE"] with ["VAGRANT"]
 ##
-for server in ["QA","STAGE"]:
+for server in ["STAGE"]:
     COPY_DB_DUMP_TO_SERVER = S3ToSFTPOperator(
         task_id=f"copy_db_dump_to_{server}",
         s3_conn_id=AIRFLOW_S3_CONN_ID,
