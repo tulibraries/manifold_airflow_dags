@@ -127,7 +127,7 @@ sudo su root - bash -c \
 for server in ["STAGE"]:
     COPY_DB_DUMP_TO_SERVER = S3ToSFTPOperator(
         task_id=f"copy_db_dump_to_{server}",
-        s3_conn_id=AIRFLOW_S3_CONN_ID,
+        aws_conn_id=AIRFLOW_S3_CONN_ID,
         s3_bucket=AIRFLOW_DATA_BUCKET,
         s3_key="{{ ti.xcom_pull(task_ids='get_latest_db_dump_in_s3')['full_path'] }}",
         sftp_conn_id=f"MANIFOLD_{server}_DB",
