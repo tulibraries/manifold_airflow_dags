@@ -630,7 +630,7 @@
                 "sha256:224e32b03eb46be70e12ef6d64e0be123a64e621ab4c0822ff6d450d52a540b9",
                 "sha256:89141536394f909066cabd112e3e1a37e4e654db00a25308b0f130bc3152eb46"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==2.3.0"
         },
         "docutils": {
@@ -693,7 +693,7 @@
                 "sha256:62b521d75494c290a646ae8acc77123721e4364790f1e64af0038d823961fbf0",
                 "sha256:a85eebfa17c339a7260c4643475af444784ba6de5588adda67406f0a75599553"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==4.4.4"
         },
         "flask-limiter": {
@@ -1295,11 +1295,11 @@
         },
         "moto": {
             "hashes": [
-                "sha256:d4bb629686b8b92e480f9784316bd0f379b148a5caee7c07aecbde6033a885e1",
-                "sha256:d9f5d0e3d027df350ff3552da851644ce192cbf7e7a9e8766fca4b5b6b550df0"
+                "sha256:65e15fc3e80a9589f50f8a5267b9a99f327224ed4d5cc44fe20edcbdb9248e06",
+                "sha256:86ee1f6b23a0c3dcf5c829fb1210fa3f293a2e8f1c95412538c0ea4a2f437021"
             ],
             "index": "pypi",
-            "version": "==4.1.9"
+            "version": "==4.1.10"
         },
         "multidict": {
             "hashes": [
