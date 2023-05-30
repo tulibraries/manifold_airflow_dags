@@ -160,11 +160,11 @@
         },
         "apache-airflow-providers-ftp": {
             "hashes": [
-                "sha256:690bb55ab2126e6b178c8ea3b2fbc4a63ab81202ec2e9b2d92d332b8d9eac8ff",
-                "sha256:7f0b0ec34e0ba6c54c06177c3a2e443e0d4d00c3fdd039b685a85fbfff183bf6"
+                "sha256:c9ac633c58e44ef5505c1633b41ee62d684c52841d5c6096ebb555bc996b2923",
+                "sha256:ca7adc788a9e78ef4981fe5ac171711d44a60b76970dd3bc5caabf11855e6784"
             ],
             "index": "pypi",
-            "version": "==3.3.1"
+            "version": "==3.4.1"
         },
         "apache-airflow-providers-http": {
             "hashes": [
@@ -349,11 +349,11 @@
         },
         "cattrs": {
             "hashes": [
-                "sha256:bc12b1f0d000b9f9bee83335887d532a1d3e99a833d1bf0882151c97d3e68c21",
-                "sha256:f0eed5642399423cf656e7b66ce92cdc5b963ecafd041d1b24d136fdde7acf6d"
+                "sha256:57a5129bfa0c752d4f215311228ea6282bbaae0edbb27f575503df0a260e1c49",
+                "sha256:9be29ab7041a3b9da67cad5daee578c511bcd52495ed85a6f8be3cf9d7c922d3"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==22.2.0"
+            "version": "==23.1.0"
         },
         "certifi": {
             "hashes": [
