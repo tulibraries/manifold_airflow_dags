@@ -7,7 +7,7 @@ from airflow.operators.python import PythonOperator
 from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 
 MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
-MANIFOLD_FINDING_AIDS_INTERVAL = airflow.models.Variable.get("MANIFOLD_FINDING_AIDS_SCHEDULE_INTERVAL", default_var="@hourly")
+MANIFOLD_FINDING_AIDS_INTERVAL = airflow.models.Variable.get("MANIFOLD_FINDING_AIDS_SCHEDULE_INTERVAL", default_var="@never")
 #
 # CREATE DAG
 #
