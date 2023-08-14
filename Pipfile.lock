@@ -144,19 +144,19 @@
         },
         "apache-airflow-providers-amazon": {
             "hashes": [
-                "sha256:24214ce0b616c41bfcc78c8df9bb1a32e420cca81bad2783116bf6d3cb7dcc95",
-                "sha256:33c27a3c52f41c0e11195a3e81c0852e158d1e3e5767f58725b03049b77dbed3"
+                "sha256:7d6f7d85251fd386b4272d0a91029185d31b033307cb510a2f053e2f1f880fe6",
+                "sha256:9fe118305d1af12a1e1a4d2a09f5e3ca5bf2e4d1ec13343116bdbb961b95e874"
             ],
             "index": "pypi",
-            "version": "==8.4.0"
+            "version": "==8.5.1"
         },
         "apache-airflow-providers-common-sql": {
             "hashes": [
-                "sha256:dacae224249c31effd9ad8c602134032faf7a1ceb7ee134510f4d5e1968c45b9",
-                "sha256:fba55e7a08c480d28cb6c8780891fe82784d5352d70329bf25e0b2b1b32da5a0"
+                "sha256:6b3c27f99be524091d91e22e5d5075cb7b5b8cd7a763906271f38c72da947db2",
+                "sha256:dfead1b6e874d176c476779d3089431dd066d3a1c2348fb5aebddd8afe0da458"
             ],
             "markers": "python_version ~= '3.8'",
-            "version": "==1.6.2"
+            "version": "==1.7.0"
         },
         "apache-airflow-providers-ftp": {
             "hashes": [
@@ -258,11 +258,11 @@
         },
         "async-timeout": {
             "hashes": [
-                "sha256:2163e1640ddb52b7a8c80d0a67a08587e5d245cc9c553a74a847056bc2976b15",
-                "sha256:8ca1e4fcf50d07413d66d1a5e416e42cfdf5851c981d679a09851a6853383b3c"
+                "sha256:4640d96be84d82d02ed59ea2b7105a0f7b33abe8703703cd0ab0bf87c427522f",
+                "sha256:7405140ff1230c310e51dc27b3145b9092d659ce68ff733fb0cefe3ee42be028"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==4.0.2"
+            "markers": "python_version >= '3.7'",
+            "version": "==4.0.3"
         },
         "attrs": {
             "hashes": [
@@ -333,11 +333,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:9a13736b16aea3f16829b00edfb2c656fee72ecbfe5eb396cc2f8632e31fd524",
-                "sha256:c20a5c46eaf49b18b76fdfaec5583320e18abd551b1bc3cd7b1e718372675e21"
+                "sha256:17cc6db84644251a5b519aeccd5eb1c313a18ef2e92616ec16182aa30c877152",
+                "sha256:b8a40b0ca1e3c8290a4c0d473c8e1575d2e8b2ddc3c61dd8814c3976357cac84"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.21"
+            "version": "==1.31.25"
         },
         "cachelib": {
             "hashes": [
@@ -631,11 +631,11 @@
         },
         "dnspython": {
             "hashes": [
-                "sha256:5b7488477388b8c0b70a8ce93b227c5603bc7b77f1565afe8e729c36c51447d7",
-                "sha256:c33971c79af5be968bb897e95c2448e11a645ee84d93b265ce0b7aabe5dfdca8"
+                "sha256:57c6fbaaeaaf39c891292012060beb141791735dbb4004798328fc2c467402d8",
+                "sha256:8dcfae8c7460a2f84b4072e26f1c9f4101ca20c071649cb7c34e8b6a93d58984"
             ],
             "markers": "python_version >= '3.8' and python_version < '4'",
-            "version": "==2.4.1"
+            "version": "==2.4.2"
         },
         "docutils": {
             "hashes": [
@@ -1452,11 +1452,11 @@
         },
         "mypy-boto3-appflow": {
             "hashes": [
-                "sha256:75c2398544019f306bf04b33f674308eb6bda4de63f94d6307cf6c231616fcd5",
-                "sha256:ec67c248312ffb5534006be53b9baddb9cbb354a2c4f95349b1c3db2f02da72b"
+                "sha256:6bb79a6e25bdb8ec16f0ca2da5bcdebf77f3557385679fc8b82aa2816ffb6f28",
+                "sha256:9b5399ed18bcd8ff3cd6d82dac10f87090a1feea3d5ad7f9b6cb94ca21ed45b0"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.28.0"
+            "version": "==1.28.16"
         },
         "mypy-boto3-rds": {
             "hashes": [
