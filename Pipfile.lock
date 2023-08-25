@@ -325,19 +325,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:4a435fdbd77628e3d32cfbc8b6225e779d8f789027fadb6a51fe1b456e15ef54",
-                "sha256:57d618f03bd269ebef6287dd4ed86ddaa1d53a4021008ad3267c6097be17e172"
+                "sha256:2ccbea42fe4cbd22a8ba1e90a37ac65f05c1932e63432e429fb7158d8255bbc0",
+                "sha256:4713a4e69120db5f358f4d378459fb4ea04be98664a0908088f6e04ab49d2583"
             ],
             "index": "pypi",
-            "version": "==1.28.28"
+            "version": "==1.28.34"
         },
         "botocore": {
             "hashes": [
-                "sha256:1b76549c45f712ca9734888e60a2ab9c857e6e6025b156b36c344162a7e9d0dc",
-                "sha256:3fd7cb89cf834b28bc7e8427cb29bb861b10652a3bebe9d0d18d9a2c1e4f3f67"
+                "sha256:23ba9e3a8b4c0e5966bbe2db62edb27f61e16b846f153f22aefda7b3c05c7942",
+                "sha256:456ef8eb458db35b8643eb10e652ed50750d13e5af431593471b2c705c34b5db"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.33"
+            "version": "==1.31.34"
         },
         "cachelib": {
             "hashes": [
@@ -634,7 +634,7 @@
                 "sha256:57c6fbaaeaaf39c891292012060beb141791735dbb4004798328fc2c467402d8",
                 "sha256:8dcfae8c7460a2f84b4072e26f1c9f4101ca20c071649cb7c34e8b6a93d58984"
             ],
-            "markers": "python_version >= '3.8' and python_version < '4.0'",
+            "markers": "python_version >= '3.8' and python_version < '4'",
             "version": "==2.4.2"
         },
         "docutils": {
@@ -697,7 +697,7 @@
                 "sha256:ba56245ba43b71c8ae936784b867625dce8b9956faeedec2953222e57942fb0b",
                 "sha256:e0ef23d8c863746bd141046167073699e1a7b03c97169cbba70f05b8d9cd6b9e"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==4.5.2"
         },
         "flask-limiter": {
@@ -1460,11 +1460,11 @@
         },
         "mypy-boto3-rds": {
             "hashes": [
-                "sha256:795da6982440ab675d3742861dcec8c8cf7ca71da1d5df06fb86b5a1dfb717fa",
-                "sha256:ec73ba9f65d55f84d6982c29cbcb77182e7b8f22b5a71d89f530aa4a8fe0d96a"
+                "sha256:55ca6951a6bbd774603a30b0322babbbf19eaec7c3187c24e62a263f932cc4a7",
+                "sha256:70f846577e03740b97872977abb9e501635ad63ec55885626311d8942a8d8628"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.28.32"
+            "version": "==1.28.34"
         },
         "mypy-boto3-redshift-data": {
             "hashes": [
