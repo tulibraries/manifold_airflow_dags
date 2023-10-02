@@ -75,7 +75,7 @@ POST_SLACK = PythonOperator(
     dag=DAG)
 
 # Create a temporary SQL script to Terminate connections to Manifold DB so we can drop the DB.
-disconnect_db_sql = """sudo su - postgres bash -c echo "select pg_terminate_backend(pid) from pg_stat_activity where datname='manifold' AND application_name!='psql';" > /tmp/disconnect_db.sql"""
+disconnect_db_sql="sudo su - postgres bash -c 'echo \"select pg_terminate_backend(pid) from pg_stat_activity where datname='\''manifold'\'' AND application_name!= '\''psql'\'';\" > /tmp/disconnect_db.sql'"
 
 # Restore the database:
 # 1. drop the db connection by calling the SQL script
