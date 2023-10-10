@@ -40,7 +40,7 @@ MANIFOLD_BLOGS_SYNC_DAG = airflow.DAG(
 sync_blogs_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
- RAILS_ENV=production bundle exec rake sync:blogs"
+ RAILS_ENV=production bundle exec rails sync:blogs"
 """
 
 sync_blogs = SSHOperator(
