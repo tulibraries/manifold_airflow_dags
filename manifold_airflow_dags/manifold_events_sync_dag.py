@@ -40,7 +40,7 @@ MANIFOLD_EVENTS_SYNC_DAG = airflow.DAG(
 sync_events_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
- RAILS_ENV=production bundle exec rake sync:events"
+ RAILS_ENV=production bundle exec rails sync:events"
 """
 
 sync_events = SSHOperator(

@@ -40,7 +40,7 @@ MANIFOLD_GENERATE_SITEMAP_DAG = airflow.DAG(
 generate_sitemap_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
- RAILS_ENV=production bundle exec rake sitemap:create"
+ RAILS_ENV=production bundle exec rails sitemap:create"
 """
 
 generate_sitemap = SSHOperator(

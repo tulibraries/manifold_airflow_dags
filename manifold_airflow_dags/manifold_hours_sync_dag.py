@@ -40,7 +40,7 @@ MANIFOLD_HOURS_SYNC_DAG = airflow.DAG(
 sync_hours_bash = """
 sudo su - manifold bash -c \
  "cd /var/www/manifold &&\
- RAILS_ENV=production bundle exec rake sync:hours"
+ RAILS_ENV=production bundle exec rails sync:hours"
 """
 
 sync_hours = SSHOperator(
