@@ -188,12 +188,12 @@
         },
         "apache-airflow-providers-sftp": {
             "hashes": [
-                "sha256:7850e4109510867672aa5081f96bb1c92aa9809072552440de70f4688c12a3ac",
-                "sha256:96f279afe60f4e337bd659ee44ffe100ee4bfdce1191e23869d8aafe6dfe3d43"
+                "sha256:31086ecd3b065e89448ca12ad9a0f04b4001d8b563ef8c8232845080cca96e89",
+                "sha256:af5a5d6a16f244fed16e8704a99384358e51891859c8f84c1133a1bf0c7d74f2"
             ],
             "index": "pypi",
             "markers": "python_version ~= '3.8'",
-            "version": "==4.5.0"
+            "version": "==4.7.0"
         },
         "apache-airflow-providers-slack": {
             "hashes": [
@@ -630,7 +630,7 @@
                 "sha256:76b122c08ef4ce2eedcd4d1abd8e641114bfc6c2867f49f3c41facf65bf19f5e",
                 "sha256:cc1c8b182eb3013e24bd475ff2e9295af86c1a38eb1aff128dac8962a9ce3c03"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==0.3.7"
         },
         "dnspython": {
@@ -2439,7 +2439,7 @@
                 "sha256:8f92fc8806f9a6b641eaa5318da32b44d401efaac0f6678c9bc448ba3605faa0",
                 "sha256:df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version >= '3.8'",
             "version": "==4.8.0"
         },
         "tzdata": {
@@ -2469,8 +2469,7 @@
                 "sha256:34b97092d7e0a3a8cf7cd10e386f401b3737364026c45e622aa02903dffe0f07",
                 "sha256:f8ecc1bba5667413457c529ab955bf8c67b45db799d159066261719e328580a0"
             ],
-            "index": "pypi",
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
+            "markers": "python_version < '3.10'",
             "version": "==1.26.18"
         },
         "watchtower": {
