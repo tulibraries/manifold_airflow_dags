@@ -145,12 +145,12 @@
         },
         "apache-airflow-providers-amazon": {
             "hashes": [
-                "sha256:7d6f7d85251fd386b4272d0a91029185d31b033307cb510a2f053e2f1f880fe6",
-                "sha256:9fe118305d1af12a1e1a4d2a09f5e3ca5bf2e4d1ec13343116bdbb961b95e874"
+                "sha256:0c363dca2b3d685e3d03a6afcd356fc6b9744d389de6ae00a3958a580c332476",
+                "sha256:15f36c69e82632ff6d1175f4d86e7af3fd1b790ca3388d7e697490d21125fe9a"
             ],
             "index": "pypi",
             "markers": "python_version ~= '3.8'",
-            "version": "==8.5.1"
+            "version": "==8.8.0"
         },
         "apache-airflow-providers-common-sql": {
             "hashes": [
@@ -630,7 +630,7 @@
                 "sha256:76b122c08ef4ce2eedcd4d1abd8e641114bfc6c2867f49f3c41facf65bf19f5e",
                 "sha256:cc1c8b182eb3013e24bd475ff2e9295af86c1a38eb1aff128dac8962a9ce3c03"
             ],
-            "markers": "python_version < '3.11'",
+            "markers": "python_version >= '3.7'",
             "version": "==0.3.7"
         },
         "dnspython": {
@@ -1513,38 +1513,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==6.0.4"
-        },
-        "mypy-boto3-appflow": {
-            "hashes": [
-                "sha256:1b67dbcc87d2ac35075e6aa51e0bc24be8a5cf6a90772295bf81b0619b1208b2",
-                "sha256:cd4a8ef1218aa00f6e98fda22abc395570b8a41055aace03f4ebbf949c045412"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.28.42"
-        },
-        "mypy-boto3-rds": {
-            "hashes": [
-                "sha256:1627f3944bd562997a0705e5d50f12301fdc9d84aa0120cd630e8f9579c07d41",
-                "sha256:af581b770609fb307f537e43fd3cc6e293bebc0acc8e3a53dfae2035e3dd5f29"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.28.63"
-        },
-        "mypy-boto3-redshift-data": {
-            "hashes": [
-                "sha256:7c4a31aaf22c02cf2651363f7524c06d03b13657f8fb5aa9c993b6f057b63cb0",
-                "sha256:f3f2f8026cee3a8113743749e3b45f31742d7be4ca79e5fc2267a27ea35f4c74"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.28.36"
-        },
-        "mypy-boto3-s3": {
-            "hashes": [
-                "sha256:11a3db97398973d4ae28489b94c010778a0a5c65f99e00268456c3fea67eca79",
-                "sha256:b008809f448e74075012d4fc54b0176de0b4f49bc38e39de30ca0e764eb75056"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==1.28.55"
         },
         "numpy": {
             "hashes": [
@@ -2439,7 +2407,7 @@
                 "sha256:8f92fc8806f9a6b641eaa5318da32b44d401efaac0f6678c9bc448ba3605faa0",
                 "sha256:df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version >= '3.8'",
             "version": "==4.8.0"
         },
         "tzdata": {
@@ -2469,17 +2437,16 @@
                 "sha256:34b97092d7e0a3a8cf7cd10e386f401b3737364026c45e622aa02903dffe0f07",
                 "sha256:f8ecc1bba5667413457c529ab955bf8c67b45db799d159066261719e328580a0"
             ],
-            "index": "pypi",
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
+            "markers": "python_version < '3.10'",
             "version": "==1.26.18"
         },
         "watchtower": {
             "hashes": [
-                "sha256:7c010791fbe89a7b4f82334a1f9696f60a6a8acdb608839dc9045f574fa46ef7",
-                "sha256:85ce51084e761ee7dd94142604af77536ab149c78bf80a4e839c7baa286b95b3"
+                "sha256:566874a9dee34b90517b9a9b7c2d5e6b15fb9fd00dacb03bff8a7bf4c6295fe0",
+                "sha256:e60b828e9c368d54044a631466322e8c6f5f9d57da0b69fbaf32ec134697367e"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==2.0.1"
+            "markers": "python_version >= '3.7'",
+            "version": "==3.0.1"
         },
         "werkzeug": {
             "hashes": [
