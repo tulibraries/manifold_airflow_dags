@@ -14,7 +14,7 @@ def slackpostonsuccess(**context):
     date = context.get('data_interval_start')
     text = "{} DAG {} success: {}".format(date, dag_id, log_url)
 
-    return send_slack_webhook_notification(context, slack_webhook_conn_id="MANIFOLD_SLACK_WEBHOOK", text=":partygritty: " + text)
+    return send_slack_webhook_notification(slack_webhook_conn_id="MANIFOLD_SLACK_WEBHOOK", text=":partygritty: " + text)
 
 def slackpostonfail(context):
     """Task Method to Post Failed Task on Lets Make a CMS Slack."""
@@ -26,4 +26,4 @@ def slackpostonfail(context):
     if not text:
         text = "Task failed: {} {} {} {}".format(dag_id, task_id, task_date, log_url)
 
-    return send_slack_webhook_notification(context, slack_webhook_conn_id="AIRFLOW_CONN_SLACK_WEBHOOK", text=":poop: " + text)
+    return send_slack_webhook_notification(slack_webhook_conn_id="AIRFLOW_CONN_SLACK_WEBHOOK", text=":poop: " + text)
