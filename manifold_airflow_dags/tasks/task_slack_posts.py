@@ -6,7 +6,7 @@ This is where to put functions that haven't been abstracted out yet.
 
 from airflow.providers.slack.notifications.slack_webhook import send_slack_webhook_notification
 
-def slackpostonsuccess(**context):
+def slackpostonsuccess(, text=None, **context):
     """Task to Post Successful Manifold DAG Completion on Lets Make a CMS Slack."""
     task_instance = context.get('task_instance')
     log_url =  task_instance.log_url
@@ -16,7 +16,7 @@ def slackpostonsuccess(**context):
 
     return send_slack_webhook_notification(slack_webhook_conn_id="MANIFOLD_SLACK_WEBHOOK", text=":partygritty: " + text)
 
-def slackpostonfail(context):
+def slackpostonfail(, text=None, **context):
     """Task Method to Post Failed Task on Lets Make a CMS Slack."""
     task_instance = context.get("task_instance")
     task_id = task_instance.task_id
