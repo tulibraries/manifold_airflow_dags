@@ -3,22 +3,27 @@ LOCAL FUNCTIONS
 Functions / any code with processing logic should be elsewhere, tested, etc.
 This is where to put functions that haven't been abstracted out yet.
 """
-from tulflow import tasks
+
+from airflow.providers.slack.notifications.slack_webhook import send_slack_webhook_notification
 
 def slackpostonsuccess(**context):
     """Task to Post Successful Manifold DAG Completion on Lets Make a CMS Slack."""
-    ti = context.get('task_instance')
-    logurl = ti.log_url
-    dagid = ti.dag_id
+    task_instance = context.get('task_instance')
+    log_url =  task_instance.log_url
+    dag_id =  task_instance.dag_id
     date = context.get('data_interval_start')
-    msg = "{} DAG {} success: {}".format(
-        date,
-        dagid,
-        logurl
-    )
-    return tasks.execute_slackpostonsuccess(context, slack_webhook_conn_id="MANIFOLD_SLACK_WEBHOOK", text=msg)
+    text = "{} DAG {} success: {}".format(date, dag_id, log_url)
+
+    return send_slack_webhook_notification(context, slack_webhook_conn_id="MANIFOLD_SLACK_WEBHOOK", text=":partygritty: " + text)
 
 def slackpostonfail(context):
     """Task Method to Post Failed Task on Lets Make a CMS Slack."""
-    msg = None
-    return tasks.execute_slackpostonfail(context, slack_webhook_conn_id="AIRFLOW_CONN_SLACK_WEBHOOK", text=msg)
+    task_instance = context.get("task_instance")
+    task_id = task_instance.task_id
+    log_url = task_instance.log_url
+    dag_id = task_instance.dag_id
+    task_date = context.get("execution_date")
+    if not text:
+        text = "Task failed: {} {} {} {}".format(dag_id, task_id, task_date, log_url)
+
+    return send_slack_webhook_notification(context, slack_webhook_conn_id="AIRFLOW_CONN_SLACK_WEBHOOK", text=":poop: " + text)
