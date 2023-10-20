@@ -357,11 +357,11 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:70e94a5f9bd46b26b63a41fb441ad35f2ae8862ad9d90765b6fa31ccc02c0a19",
-                "sha256:8d161a97a25eb381721b4b7251d5126ef4ec57e452114250b3e51ba5e4ff45a4"
+                "sha256:487fb6ee4a6612613da370599b1a1aca0e159dd9e94b2e8aaa8e6ad9cc546ded",
+                "sha256:ab3b73a2e03efa1c534a94f8db4a5cf45629a53e5478d2d154b0a3e2ffb05249"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.66"
+            "version": "==1.31.67"
         },
         "cachelib": {
             "hashes": [
@@ -2635,11 +2635,11 @@
         },
         "tulflow": {
             "hashes": [
-                "sha256:24cf1cc74488ee959d76127bed470c89dd7468d2accf14be635d5a953bde8fe2",
-                "sha256:33f559e9b602fd40c0e4a32ffdf70177d03575ad873c1020747e31c289d5839e"
+                "sha256:32cb9751eeeb97008eefa2a0f7d280a0c8418d8b641ba4a134c5fcf11cd216c7",
+                "sha256:59661ef700837c2c9a57332e3a1833fe4cddaee9067eff9e7fa5a83d8af99f6a"
             ],
             "index": "pypi",
-            "version": "==0.9.3"
+            "version": "==0.9.6"
         },
         "types-pyyaml": {
             "hashes": [
