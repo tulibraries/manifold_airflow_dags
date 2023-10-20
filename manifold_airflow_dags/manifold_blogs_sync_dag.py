@@ -19,6 +19,8 @@ DEFAULT_ARGS = {
     "email_on_retry": False,
     "retries": 0,
     "retry_delay": timedelta(minutes=5),
+    "on_failure_callback": [slackpostonfail],
+    "on_success_callback": [slackpostonsuccess],
 }
 
 MANIFOLD_BLOGS_SYNC_DAG = airflow.DAG(
@@ -47,7 +49,5 @@ sync_blogs = SSHOperator(
     command=sync_blogs_bash,
     cmd_timeout=None,
     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
-    on_failure_callback=slackpostonfail,
-    on_success_callback=slackpostonsuccess,
     dag=MANIFOLD_BLOGS_SYNC_DAG,
 )
