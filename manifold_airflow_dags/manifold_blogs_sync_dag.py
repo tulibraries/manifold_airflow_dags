@@ -43,13 +43,13 @@ sudo su - manifold bash -c \
  RAILS_ENV=production bundle exec rails sync:blogs"
 """
 
-sync_blogs = SSHOperator(
-    task_id="sync_blogs",
-    command=sync_blogs_bash,
-    cmd_timeout=None,
-    ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
-    dag=MANIFOLD_BLOGS_SYNC_DAG,
-)
+# sync_blogs = SSHOperator(
+#     task_id="sync_blogs",
+#     command=sync_blogs_bash,
+#     cmd_timeout=None,
+#     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
+#     dag=MANIFOLD_BLOGS_SYNC_DAG,
+# )
 
 post_slack = PythonOperator(
     task_id="slack_post_succ",
@@ -60,4 +60,4 @@ post_slack = PythonOperator(
 #
 # SET UP TASK DEPENDENCIES
 #
-post_slack.set_upstream(sync_blogs)
+# post_slack.set_upstream(sync_blogs)
