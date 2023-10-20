@@ -18,6 +18,7 @@ DEFAULT_ARGS = {
     "email_on_failure": False,
     "email_on_retry": False,
     "on_failure_callback": [slackpostonfail],
+    "on_success_callback": [slackpostonsuccess],
     "retries": 0,
     "retry_delay": timedelta(minutes=5),
 }
@@ -50,13 +51,3 @@ sync_blogs = SSHOperator(
     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
     dag=MANIFOLD_BLOGS_SYNC_DAG,
 )
-
-post_slack = PythonOperator(
-    task_id="slack_post_succ",
-    python_callable=slackpostonsuccess,
-    dag=MANIFOLD_BLOGS_SYNC_DAG
-)
-
-#
-# SET UP TASK DEPENDENCIES
-post_slack.set_upstream(sync_blogs)
