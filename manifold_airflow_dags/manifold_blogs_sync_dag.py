@@ -59,5 +59,4 @@ post_slack = PythonOperator(
 
 #
 # SET UP TASK DEPENDENCIES
-#
 post_slack.set_upstream(sync_blogs)
