@@ -17,7 +17,7 @@ DEFAULT_ARGS = {
     "email": ["svc.libdev@temple.edu"],
     "email_on_failure": False,
     "email_on_retry": False,
-    "on_failure_callback": slackpostonfail,
+    "on_failure_callback": [slackpostonfail],
     "retries": 0,
     "retry_delay": timedelta(minutes=5),
 }
