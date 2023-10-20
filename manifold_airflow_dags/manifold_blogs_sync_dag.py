@@ -17,8 +17,6 @@ DEFAULT_ARGS = {
     "email": ["svc.libdev@temple.edu"],
     "email_on_failure": False,
     "email_on_retry": False,
-    "on_failure_callback": [slackpostonfail],
-    "on_success_callback": [slackpostonsuccess],
     "retries": 0,
     "retry_delay": timedelta(minutes=5),
 }
@@ -49,5 +47,7 @@ sync_blogs = SSHOperator(
     command=sync_blogs_bash,
     cmd_timeout=None,
     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
+    on_failure_callback=slackpostonfail,
+    on_success_callback=slackpostonsuccess,
     dag=MANIFOLD_BLOGS_SYNC_DAG,
 )
