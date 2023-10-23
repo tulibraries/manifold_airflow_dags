@@ -10,11 +10,13 @@ from airflow.configuration import conf
 from airflow.operators.bash import BashOperator
 from airflow.operators.empty import EmptyOperator
 from datetime import timedelta
-from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os
 import logging
 import airflow
 import jinja2
+from airflow.providers.slack.notifications.slack import send_slack_notification
+
+slackpostonfail = send_slack_notification(channel="infra_alerts", username="airflow", text=":poop: Task failed: {{ dag.dag_id }} {{ ti.task_id }} {{ execution_date }} {{ ti.log_url }}")
 
 
 # airflow-log-cleanup
@@ -92,7 +94,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'start_date': START_DATE,
-    'on_failure_callback': slackpostonfail,
+    'on_failure_callback': [slackpostonfail],
     'retries': 1,
     'retry_delay': timedelta(minutes=1)
 }
