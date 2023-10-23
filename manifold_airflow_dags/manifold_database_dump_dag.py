@@ -8,8 +8,11 @@ from airflow.operators.bash import BashOperator
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.providers.amazon.aws.transfers.sftp_to_s3 import SFTPToS3Operator
 from airflow.operators.python import PythonOperator
-from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail
-from manifold_airflow_dags.tasks.task_slack_posts import slackpostonsuccess
+from airflow.providers.slack.notifications.slack import send_slack_notification
+
+slackpostonsuccess = send_slack_notification(channel="lets-make-a-cms", username="airflow", text=":partygritty: {{ execution_date }} DAG {{ dag.dag_id }} success: {{ ti.log_url }}")
+slackpostonfail = send_slack_notification(channel="infra_alerts", username="airflow", text=":poop: Task failed: {{ dag.dag_id }} {{ ti.task_id }} {{ execution_date }} {{ ti.log_url }}")
+
 
 MANIFOLD_INSTANCE_SSH_CONN = \
         BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
@@ -29,7 +32,8 @@ DEFAULT_ARGS = {
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 0,
-    "on_failure_callback": slackpostonfail,
+    "on_failure_callback": [slackpostonfail],
+    "on_success_callback": [slackpostonsuccess],
     "retry_delay": timedelta(minutes=5),
 }
 

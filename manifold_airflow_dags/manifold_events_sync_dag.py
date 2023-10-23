@@ -4,7 +4,10 @@ import pendulum
 import airflow
 from airflow.providers.ssh.operators.ssh import SSHOperator
 from airflow.operators.python import PythonOperator
-from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
+from airflow.providers.slack.notifications.slack import send_slack_notification
+
+slackpostonsuccess = send_slack_notification(channel="lets-make-a-cms", username="airflow", text=":partygritty: {{ execution_date }} DAG {{ dag.dag_id }} success: {{ ti.log_url }}")
+slackpostonfail = send_slack_notification(channel="infra_alerts", username="airflow", text=":poop: Task failed: {{ dag.dag_id }} {{ ti.task_id }} {{ execution_date }} {{ ti.log_url }}")
 
 MANIFOLD_INSTANCE_SSH_CONN = airflow.hooks.base.BaseHook.get_connection("AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE")
 MANIFOLD_EVENTS_SYNC_INTERVAL = airflow.models.Variable.get("MANIFOLD_EVENTS_SYNC_SCHEDULE_INTERVAL")
@@ -17,7 +20,8 @@ DEFAULT_ARGS = {
     "email": ["svc.libdev@temple.edu"],
     "email_on_failure": False,
     "email_on_retry": False,
-    "on_failure_callback": slackpostonfail,
+    "on_failure_callback": [slackpostonfail],
+    "on_success_callback": [slackpostonsuccess],
     "retries": 0,
     "retry_delay": timedelta(minutes=5),
 }
@@ -50,14 +54,3 @@ sync_events = SSHOperator(
     ssh_conn_id="AIRFLOW_CONN_MANIFOLD_SSH_INSTANCE",
     dag=MANIFOLD_EVENTS_SYNC_DAG
 )
-
-post_slack = PythonOperator(
-    task_id="slack_post_succ",
-    python_callable=slackpostonsuccess,
-    dag=MANIFOLD_EVENTS_SYNC_DAG
-)
-
-#
-# SET UP TASK DEPENDENCIES
-#
-post_slack.set_upstream(sync_events)

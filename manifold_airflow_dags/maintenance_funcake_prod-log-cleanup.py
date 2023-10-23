@@ -6,11 +6,14 @@ from airflow.configuration import conf
 from airflow.operators.bash import BashOperator
 from airflow.operators.empty import EmptyOperator
 from datetime import timedelta
-from manifold_airflow_dags.tasks.task_slack_posts import slackpostonfail, slackpostonsuccess
 import os
 import logging
 import jinja2
 import airflow
+from airflow.providers.slack.notifications.slack import send_slack_notification
+
+slackpostonfail = send_slack_notification(channel="infra_alerts", username="airflow", text=":poop: Task failed: {{ dag.dag_id }} {{ ti.task_id }} {{ execution_date }} {{ ti.log_url }}")
+
 
 # airflow-log-cleanup
 DAG_ID = os.path.basename(__file__).replace(".pyc", "").replace(".py", "")

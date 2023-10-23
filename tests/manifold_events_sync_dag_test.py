@@ -23,15 +23,4 @@ class TestManifoldEventsSyncDag(unittest.TestCase):
         """Unit test that the DAG instance contains the expected tasks."""
         self.assertEqual(self.tasks, [
             "sync_events",
-            "slack_post_succ",
             ])
-
-    def test_dag_task_order(self):
-        """Unit test that the DAG instance contains the expected dependencies."""
-        expected_task_deps = {
-            "slack_post_succ": "sync_events",
-        }
-
-        for task, upstream_task in expected_task_deps.items():
-            actual_ut = MANIFOLD_EVENTS_SYNC_DAG.get_task(task).upstream_list[0].task_id
-            self.assertEqual(upstream_task, actual_ut)
