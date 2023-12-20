@@ -18,7 +18,7 @@ The following are the Airflow expectations for the DAGs to successfully run:
 
 **Libraries & Packages**
 
-- Python Packages: see the [Pipfile](Pipfile)
+- Python Version and Packages: see the [Pipfile](Pipfile)
 
 **Airflow Variables**
 
