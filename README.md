@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/tulibraries/manifold_airflow_dags.svg?style=svg)](https://circleci.com/gh/tulibraries/manifold_airflow_dags)
 ![pylint Score](https://mperlet.github.io/pybadge/badges/9.47.svg)
 
-This is the repository for Funnel Cake (PA Digital / DPLA Data QA Interface) Airflow DAGs (Directed Acyclic Graphs, e.g., data processing workflows) for data indexing to Solr + related jobs. These DAGs are expecting to be run within an Airflow installation akin to the one built by our [TUL Airflow Playbook (private repository)](https://github.com/tulibraries/ansible-playbook-airflow).
+This is the repository for the Manifold Airflow DAGs (Directed Acyclic Graphs, e.g., data processing workflows) and related jobs. These DAGs are expected to be run within an Airflow installation akin to the one built by our [TUL Airflow Playbook (private repository)](https://github.com/tulibraries/ansible-playbook-airflow).
 
 ## Repository Structure
 
@@ -14,12 +14,11 @@ This repository has 3 main groups of files:
 
 ## Airflow Expectations
 
-These the Airflow expectations for these Funnel Cake DAGs to successfully run:
+The following are the Airflow expectations for the DAGs to successfully run:
 
 **Libraries & Packages**
 
-- Python 3.7
-- Python Packages: see the [Pipfile](Pipfile)
+- Python Version and Packages: see the [Pipfile](Pipfile)
 
 **Airflow Variables**
 
@@ -32,7 +31,7 @@ See `variables.json` file
 ## Local Development
 
 ### Run with local setup
-WIP.
+The following commands are available for local testing and development:
 
 * `make up`: Sets up local airflow with these dags.
 * `make down`: Close the local setup.
