@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7eed8b33346df1cd4344458cbae5186a1c226947aa7a2fae060aacb4d6409769"
+            "sha256": "be86bce986c3fc142c58dae71a738eb11dfa7e9d49b21f08d74c66af888bfc8e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1301,11 +1301,11 @@
         },
         "idna": {
             "hashes": [
-                "sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca",
-                "sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f"
+                "sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc",
+                "sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0"
             ],
             "markers": "python_version >= '3.5'",
-            "version": "==3.6"
+            "version": "==3.7"
         },
         "importlib-metadata": {
             "hashes": [
@@ -1685,12 +1685,12 @@
         },
         "moto": {
             "hashes": [
-                "sha256:71bb832a18b64f10fc4cec117b9b0e2305e5831d9a17eb74f6b9819ed7613843",
-                "sha256:7e27395e5c63ff9554ae14b5baa41bfe6d6b1be0e59eb02977c6ce28411246de"
+                "sha256:ad8b23f2b555ad694da8b2432a42b6d96beaaf67a4e7d932196a72193a2eee2c",
+                "sha256:ca1e22831a741733b581ff2ef4d6ae2e1c6db1eab97af1b78b86ca2c6e88c609"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==5.0.2"
+            "version": "==5.0.6"
         },
         "multidict": {
             "hashes": [
@@ -2135,10 +2135,11 @@
         },
         "pycparser": {
             "hashes": [
-                "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9",
-                "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"
+                "sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6",
+                "sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc"
             ],
-            "version": "==2.21"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.22"
         },
         "pygments": {
             "hashes": [
