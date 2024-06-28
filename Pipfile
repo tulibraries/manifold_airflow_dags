@@ -21,7 +21,7 @@ pylint = "*"
 pysftp = "*"
 pytest = "==7.4.4"
 requests-mock = "==1.12.1"
-s3fs = "==2023.12.1"
+s3fs = "==2023.12.2"
 setuptools = "*"
 sickle = "*"
 sshtunnel = "==0.4.0"
@@ -34,4 +34,4 @@ pandas = "==2.1.4"
 [packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.12.3"
